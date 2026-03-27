@@ -1,0 +1,12 @@
+{
+  "slug": "camino-puente-genil",
+  "title": "The Road from Puente Genil",
+  "titleEs": "El camino desde Puente Genil",
+  "dateStart": "2025-05-01",
+  "dateEnd": "2025-05-25",
+  "from": { "name": "Puente Genil, Córdoba", "lat": 37.396, "lng": -4.774 },
+  "to": { "name": "El Rocío, Huelva", "lat": 37.128, "lng": -6.487 },
+  "summary": "Six days on foot with the Hermandad — oxcarts, horses, brotherhood, and the particular madness of the Andalusian countryside in May.",
+  "summaryEs": "Seis días a pie con la Hermandad — carretas, caballos, hermandad, y la particular locura del campo andaluz en mayo.",
+  "coverImage": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80"
+}

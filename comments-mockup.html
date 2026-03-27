@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Comments Mockup — Espuma & Erranza</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy-950: #070e17;
+      --navy-900: #0d1b2a;
+      --navy-700: #1a3048;
+      --gold:     #c8a96e;
+      --gold-dim: rgba(200, 169, 110, 0.18);
+      --gold-rule: rgba(200, 169, 110, 0.35);
+      --sand:     #f5f0e8;
+      --text:     #1a1a1a;
+      --muted:    #6b7280;
+      --white:    #ffffff;
+
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body:    'DM Sans', sans-serif;
+      --font-mono:    'DM Mono', monospace;
+    }
+
+    html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--white);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* ── HEADER ──────────────────────────────────── */
+    .site-header {
+      background: var(--navy-950);
+      padding: 1.25rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .site-logo {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      color: var(--white);
+      letter-spacing: 0.02em;
+    }
+    .site-tagline {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--gold);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-top: 0.15rem;
+    }
+    .site-nav {
+      display: flex;
+      gap: 2rem;
+    }
+    .site-nav a {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+      text-decoration: none;
+    }
+
+    /* ── ARTICLE SECTION ─────────────────────────── */
+    .article-wrap {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 4rem 2rem 0;
+    }
+
+    .article-meta {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .article-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      font-weight: 700;
+      color: var(--navy-900);
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+    }
+
+    .article-body {
+      font-size: 1.0625rem;
+      line-height: 1.85;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+    }
+
+    .article-body p + p { margin-top: 1.4rem; }
+
+    /* fake photo placeholder */
+    .article-photo {
+      width: 100%;
+      height: 420px;
+      background: linear-gradient(160deg, #b8c9d8 0%, #8aa5bb 40%, #c8a96e22 100%);
+      border-radius: 2px;
+      margin: 2.5rem 0;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+      position: relative;
+    }
+    .article-photo-caption {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      color: rgba(255,255,255,0.75);
+      padding: 0.75rem 1rem;
+      background: linear-gradient(to top, rgba(7,14,23,0.7) 0%, transparent 100%);
+      width: 100%;
+    }
+    .article-photo-label {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.45);
+      pointer-events: none;
+    }
+
+    /* gold rule divider */
+    .gold-rule {
+      border: none;
+      border-top: 1px solid var(--gold-rule);
+      margin: 3rem 0;
+    }
+
+    /* ── COMMENTS SECTION ────────────────────────── */
+    .comments-section {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 2rem 6rem;
+    }
+
+    .comments-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .comments-title {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--navy-900);
+    }
+
+    .comments-count {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* individual comment */
+    .comment {
+      display: grid;
+      grid-template-columns: 42px 1fr;
+      gap: 0 1.25rem;
+      margin-bottom: 2.25rem;
+    }
+
+    .comment-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: var(--navy-900);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--gold);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .comment-avatar.alt {
+      background: var(--gold-dim);
+      color: var(--navy-900);
+      border: 1px solid var(--gold-rule);
+    }
+
+    .comment-body {}
+
+    .comment-byline {
+      display: flex;
+      align-items: baseline;
+      gap: 0.75rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .comment-author {
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--navy-900);
+    }
+
+    .comment-date {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+    }
+
+    .comment-text {
+      font-size: 0.9625rem;
+      line-height: 1.75;
+      color: #2d2d2d;
+    }
+
+    /* ── FORM ────────────────────────────────────── */
+    .form-divider {
+      border: none;
+      border-top: 1px solid var(--gold-rule);
+      margin: 2.5rem 0;
+    }
+
+    .form-title {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--navy-900);
+      margin-bottom: 1.75rem;
+    }
+
+    .comment-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .form-group.full { grid-column: 1 / -1; }
+
+    .form-label {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--navy-700);
+    }
+
+    .form-label-note {
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      color: var(--muted);
+      letter-spacing: 0;
+      text-transform: none;
+      margin-left: 0.4rem;
+    }
+
+    .form-input,
+    .form-textarea {
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      color: var(--text);
+      background: var(--white);
+      border: 1px solid rgba(200, 169, 110, 0.3);
+      border-radius: 2px;
+      padding: 0.65rem 0.85rem;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+      appearance: none;
+    }
+
+    .form-input:focus,
+    .form-textarea:focus {
+      border-color: var(--gold);
+    }
+
+    .form-input::placeholder,
+    .form-textarea::placeholder {
+      color: #b0aca6;
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 130px;
+      line-height: 1.6;
+    }
+
+    .form-submit-row {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 0.5rem;
+    }
+
+    .form-privacy {
+      font-size: 0.75rem;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    .btn-submit {
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--navy-950);
+      background: var(--gold);
+      border: none;
+      border-radius: 2px;
+      padding: 0.75rem 1.75rem;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      white-space: nowrap;
+    }
+
+    .btn-submit:hover {
+      background: #d4b97e;
+      transform: translateY(-1px);
+    }
+
+    /* ── FOOTER ──────────────────────────────────── */
+    .site-footer {
+      background: var(--navy-950);
+      padding: 2rem;
+      text-align: center;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.25);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div>
+      <div class="site-logo">Espuma & Erranza</div>
+      <div class="site-tagline">Sailing · Trekking · Wandering</div>
+    </div>
+    <nav class="site-nav">
+      <a href="#">Trips</a>
+      <a href="#">Map</a>
+      <a href="#">About</a>
+    </nav>
+  </header>
+
+  <!-- ARTICLE -->
+  <article class="article-wrap">
+    <div class="article-meta">20 February 2026 &nbsp;·&nbsp; Southern Thailand &nbsp;·&nbsp; Sailing</div>
+    <h1 class="article-title">Last Night in Thailand</h1>
+
+    <div class="article-body">
+      <p>Langkawi was two days away. Artemisa was provisioned, the paperwork was done, and the only responsible thing left to do was find a beach bar, order something cold, and spend the last Thai evening doing what Thailand does best — making it very difficult to leave.</p>
+    </div>
+
+    <div class="article-photo">
+      <div class="article-photo-label">Longtail boats at sunset, Southern Thailand</div>
+      <div class="article-photo-caption">Longtail boats at sunset — Thailand's way of saying a proper goodbye</div>
+    </div>
+
+    <div class="article-body">
+      <p>The coastline is pristine. Limestone karsts dropping into water the colour of a swimming pool, beaches lined up one after another with embarrassing generosity. No hotels looming over the sand, no cranes on the horizon. The sailing is easy — anchorages everywhere, holding good, winds predictable. Customs and immigration handled with efficiency and good humour. The pad thai alone justifies the detour.</p>
+      <p>We spent weeks threading through the islands south of Phuket, a new beach every day, something worth stopping for every evening. Artemisa will come back.</p>
+      <p>Tomorrow: Malaysia.</p>
+    </div>
+
+    <hr class="gold-rule" />
+  </article>
+
+  <!-- COMMENTS -->
+  <section class="comments-section">
+
+    <div class="comments-header">
+      <h2 class="comments-title">Comments</h2>
+      <span class="comments-count">2 comments</span>
+    </div>
+
+    <!-- Comment 1 -->
+    <div class="comment">
+      <div class="comment-avatar">MJ</div>
+      <div class="comment-body">
+        <div class="comment-byline">
+          <span class="comment-author">María José</span>
+          <span class="comment-date">22 Feb 2026</span>
+        </div>
+        <p class="comment-text">¡Qué pasada, Ricardo! Leyendo esto con un café en la mano me he transportado a esas playas. La foto de los longtails al atardecer es preciosa — transmite exactamente esa sensación de que no quieres irte. Cuándo viene la entrada de Langkawi? 🌊</p>
+      </div>
+    </div>
+
+    <!-- Comment 2 -->
+    <div class="comment">
+      <div class="comment-avatar alt">PH</div>
+      <div class="comment-body">
+        <div class="comment-byline">
+          <span class="comment-author">Peter H.</span>
+          <span class="comment-date">23 Feb 2026</span>
+        </div>
+        <p class="comment-text">Great write-up. Did you make it to Koh Lipe before crossing? The anchorage on the east side is outstanding — calmer than it looks on the chart and the snorkelling off the reef is worth the extra half day. We did the same run on our Oyster 48 two seasons ago. Thailand is criminally underrated as a cruising destination.</p>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <hr class="form-divider" />
+
+    <!-- Form -->
+    <h3 class="form-title">Leave a comment</h3>
+
+    <form class="comment-form">
+      <div class="form-group">
+        <label class="form-label">Name</label>
+        <input class="form-input" type="text" placeholder="Your name" />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">
+          Email
+          <span class="form-label-note">optional — for your avatar only, never shown</span>
+        </label>
+        <input class="form-input" type="email" placeholder="your@email.com" />
+      </div>
+
+      <div class="form-group full">
+        <label class="form-label">Comment</label>
+        <textarea class="form-textarea" placeholder="Share your thoughts…"></textarea>
+      </div>
+
+      <div class="form-submit-row">
+        <p class="form-privacy">No account needed. Your email, if provided,<br>is only used to display a Gravatar avatar.</p>
+        <button type="submit" class="btn-submit">Post Comment</button>
+      </div>
+    </form>
+
+  </section>
+
+  <footer class="site-footer">
+    © 2026 Espuma & Erranza &nbsp;·&nbsp; Ricardo Pérez
+  </footer>
+
+</body>
+</html>

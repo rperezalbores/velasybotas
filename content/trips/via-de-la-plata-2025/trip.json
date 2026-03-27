@@ -1,0 +1,16 @@
+{
+  "slug": "via-de-la-plata-2025",
+  "title": "Vía de la Plata",
+  "titleEs": "Vía de la Plata",
+  "subtitle": "Sevilla to Santiago, the long way",
+  "subtitleEs": "De Sevilla a Santiago, por el camino largo",
+  "type": "camino",
+  "dateStart": "2025-06-01",
+  "dateEnd": "2025-06-30",
+  "summary": "The least walked of the major Caminos. 1,000 km from Sevilla to Santiago through Extremadura and Galicia — almost no infrastructure, almost no other pilgrims, almost too much sky.",
+  "summaryEs": "El menos transitado de los grandes Caminos. 1.000 km de Sevilla a Santiago por Extremadura y Galicia — casi sin infraestructura, casi sin otros peregrinos, casi demasiado cielo.",
+  "coverImage": "https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?w=1600&q=80",
+  "tags": ["camino", "spain", "hiking", "pilgrimage"],
+  "route": null,
+  "featured": false
+}

@@ -1,0 +1,200 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');
+
+:root {
+  --font-playfair: 'Playfair Display', Georgia, serif;
+  --font-dm-sans: 'DM Sans', system-ui, sans-serif;
+  --font-dm-mono: 'DM Mono', monospace;
+
+  --navy-950: #070e17;
+  --navy-900: #0d1b2a;
+  --gold-500: #c8a96e;
+  --gold-400: #d4aa6e;
+  --sand: #f5f0e8;
+  --text: #1a1a1a;
+  --muted: #6b7280;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-dm-sans);
+  color: var(--text);
+  background: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Grain overlay */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.018;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* Selection */
+::selection {
+  background: var(--gold-500);
+  color: white;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #f1f1f1; }
+::-webkit-scrollbar-thumb { background: var(--navy-900); border-radius: 3px; }
+
+/* Section numbers */
+.section-number {
+  font-family: var(--font-playfair);
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 800;
+  color: var(--gold-500);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  opacity: 0.15;
+  user-select: none;
+}
+
+/* Article prose */
+.prose-entry {
+  font-family: var(--font-dm-sans);
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  color: #1a1a1a;
+}
+
+.prose-entry strong {
+  font-weight: 600;
+  color: #0d1b2a;
+}
+
+.prose-entry h2 {
+  font-family: var(--font-playfair);
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 700;
+  color: var(--navy-900);
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.prose-entry h3 {
+  font-family: var(--font-playfair);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--navy-900);
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.prose-entry p {
+  margin-bottom: 1.5rem;
+}
+
+.prose-entry blockquote {
+  border-left: 3px solid var(--gold-500);
+  padding-left: 1.5rem;
+  margin: 2rem 0;
+  font-style: italic;
+  font-family: var(--font-playfair);
+  font-size: 1.1rem;
+  color: #444;
+}
+
+/* Hero image */
+.hero-image-container {
+  position: relative;
+  width: 100%;
+  height: 70vh;
+  min-height: 480px;
+  overflow: hidden;
+}
+
+.hero-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Card hover */
+.trip-card {
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.trip-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(13, 27, 42, 0.15);
+}
+
+/* Animated underline */
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--gold-500);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Page transitions */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.fade-up {
+  animation: fadeUp 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.fade-up-delay-1 { animation-delay: 0.1s; }
+.fade-up-delay-2 { animation-delay: 0.2s; }
+.fade-up-delay-3 { animation-delay: 0.3s; }
+.fade-up-delay-4 { animation-delay: 0.4s; }
+
+/* Map container */
+.mapbox-container {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+}
+
+/* Gold rule */
+.gold-rule {
+  border: none;
+  border-top: 1px solid var(--gold-500);
+  opacity: 0.4;
+}
+
+/* Breadcrumb */
+.breadcrumb-item + .breadcrumb-item::before {
+  content: '—';
+  margin: 0 0.5rem;
+  color: var(--gold-500);
+  opacity: 0.6;
+}

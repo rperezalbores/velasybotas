@@ -1,0 +1,12 @@
+{
+  "slug": "leg-7-langkawi",
+  "title": "Langkawi",
+  "titleEs": "Langkawi",
+  "summary": "Artemisa finds her berth. Erwin flies home. The boss arrives. Island-hopping by dinghy, champagne at sunset, and one last Tiger beer before Dubai.",
+  "summaryEs": "Artemisa encuentra su amarre. Erwin vuela a casa. Llega la jefa. Islas en el auxiliar, champán al atardecer y una última Tiger antes de Dubái.",
+  "dateStart": "2026-02-25",
+  "dateEnd": "2026-03-22",
+  "from": { "name": "Royal Langkawi Yacht Marina, Malaysia", "lat": 6.312, "lng": 99.852 },
+  "to": { "name": "Royal Langkawi Yacht Marina, Malaysia", "lat": 6.312, "lng": 99.852 },
+  "coverImage": "/content/trips/dubai-to-langkawi/leg-7-langkawi/photos/2026-02-25-langkawi-horizon.jpg"
+}

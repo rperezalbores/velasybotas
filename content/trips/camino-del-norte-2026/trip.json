@@ -1,0 +1,16 @@
+{
+  "slug": "camino-del-norte-2026",
+  "title": "Camino del Norte",
+  "titleEs": "Camino del Norte",
+  "subtitle": "The coastal route, June 2026",
+  "subtitleEs": "La ruta costera, junio 2026",
+  "type": "camino",
+  "dateStart": "2026-06-01",
+  "dateEnd": "2026-06-30",
+  "summary": "The northern coast of Spain from Irún to Santiago. Cliffs, fishing villages, Basque country. Harder than the Francés, emptier, more beautiful.",
+  "summaryEs": "La costa norte de España de Irún a Santiago. Acantilados, pueblos pesqueros, País Vasco. Más duro que el Francés, más vacío, más hermoso.",
+  "coverImage": "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=1600&q=80",
+  "tags": ["camino", "spain", "hiking", "basque country"],
+  "route": null,
+  "featured": false
+}

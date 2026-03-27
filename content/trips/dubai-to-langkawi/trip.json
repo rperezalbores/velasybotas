@@ -1,0 +1,45 @@
+{
+  "slug": "dubai-to-langkawi",
+  "title": "Dubai to Langkawi — Artemisa's Maiden Blue Water Passage",
+  "titleEs": "Dubái a Langkawi — El primer gran pasaje de Artemisa",
+  "subtitle": "3,500 nautical miles. Four legs. One Hanse 505.",
+  "subtitleEs": "3.500 millas náuticas. Cuatro tramos. Un Hanse 505.",
+  "summary": "From the desert creeks of the UAE to the emerald waters of Malaysia — Artemisa's first blue water passage, sailed shorthanded across the Arabian Sea, Indian Ocean, and Strait of Malacca.",
+  "summaryEs": "Desde las aguas del Golfo Pérsico hasta los mares de Malasia — el primer gran pasaje de Artemisa, navegado con tripulación mínima por el Mar Arábigo, el Océano Índico y el Estrecho de Malaca.",
+  "type": "sailing",
+  "dateStart": "2025-12-01",
+  "dateEnd": "2026-03-22",
+  "coverImage": "/content/trips/dubai-to-langkawi/leg-7-langkawi/photos/hero-dubai-to-langkawi.jpg",
+  "featured": true,
+  "tags": ["sailing", "bluewater", "artemisa", "indian-ocean", "maldives", "sri-lanka", "thailand", "langkawi"],
+  "route": {
+    "type": "LineString",
+    "coordinates": [
+      [55.76, 25.78],
+      [55.75, 26.25],
+      [56.45, 26.38],
+      [58.40, 24.17],
+      [60.24, 22.42],
+      [62.50, 17.00],
+      [65.00, 13.00],
+      [68.00, 10.00],
+      [72.92, 7.08],
+      [73.509, 4.175],
+      [76.80, 5.10],
+      [80.20, 6.03],
+      [90.00, 7.50],
+      [98.40, 7.87],
+      [97.65, 8.67],
+      [99.85, 6.31]
+    ]
+  },
+  "legs": [
+    "leg-1-passage-dubai-maldives",
+    "leg-2-maldives",
+    "leg-3-srilanka",
+    "leg-4-passage-srilanka-thailand",
+    "leg-5-thailand",
+    "leg-6-passage-thailand-langkawi",
+    "leg-7-langkawi"
+  ]
+}

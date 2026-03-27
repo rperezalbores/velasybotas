@@ -1,0 +1,51 @@
+# Media files — stored on CDN, not in git
+content/trips/**/photos/
+blog/public/photos/
+
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Node
+blog/node_modules/
+blog/.next/
+blog/.env.local
+
+# Build artifacts
+blog/tsconfig.tsbuildinfo
+
+# AI tool configs (Claude Code skills, etc.)
+.adal/
+.agent/
+.agents/
+.augment/
+.claude/
+.codebuddy/
+.commandcode/
+.continue/
+.cortex/
+.crush/
+.factory/
+.firecrawl/
+.goose/
+.iflow/
+.junie/
+.kilocode/
+.kiro/
+.kode/
+.mcpjam/
+.mux/
+.neovate/
+.openhands/
+.pi/
+.pochi/
+.qoder/
+.qwen/
+.roo/
+.trae/
+.vibe/
+.windsurf/
+.zencoder/
+skills/
+skills-lock.json
+tasks.tmp

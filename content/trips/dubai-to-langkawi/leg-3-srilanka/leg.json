@@ -1,0 +1,12 @@
+{
+  "slug": "leg-3-srilanka",
+  "title": "Malé to Galle — Passage & Sri Lanka",
+  "titleEs": "Malé a Galle — Navegación y Sri Lanka",
+  "summary": "Three days from Malé with good winds, motoring the last 12 hours in Sri Lanka's lee — then a week in Galle: concrete quays, motorcycle-tyre fenders, a corrupt fuel agent, Galle Fort at dusk, and the best beach bar we never expected to find.",
+  "summaryEs": "Tres días desde Malé con buen viento, a motor las últimas 12 horas a sotavento de Sri Lanka — y luego una semana en Galle: muelles de hormigón, defensas de neumático de moto, un agente corrupto, el Fuerte al atardecer y el mejor bar de playa que jamás esperábamos encontrar.",
+  "dateStart": "2026-01-04",
+  "dateEnd": "2026-01-14",
+  "from": { "name": "Malé, Maldives", "lat": 4.175, "lng": 73.509 },
+  "to": { "name": "Galle, Sri Lanka", "lat": 6.03, "lng": 80.20 },
+  "coverImage": "/content/trips/dubai-to-langkawi/leg-3-srilanka/photos/2026-01-07-galle-artemisa-berth.jpg"
+}

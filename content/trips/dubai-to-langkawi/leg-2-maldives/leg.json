@@ -1,0 +1,12 @@
+{
+  "slug": "leg-2-maldives",
+  "title": "The Maldives",
+  "titleEs": "Las Maldivas",
+  "summary": "Three weeks in paradise. From the quiet atolls of Uligan to the family-filled lagoon at Crossroads, a marlin on the line at Goidhoo, manta rays on Boxing Day, and 2025 going out in fireworks on the beach. The Maldives delivered everything the Indian Ocean had promised.",
+  "summaryEs": "Tres semanas en el paraíso. Desde los tranquilos atolones de Uligan hasta la laguna familiar de Crossroads, un marlín en el anzuelo en Goidhoo, mantarrayas el día de San Esteban y el 2025 despidiéndose con fuegos artificiales en la playa. Las Maldivas cumplieron todo lo que el Océano Índico había prometido.",
+  "dateStart": "2025-12-15",
+  "dateEnd": "2026-01-04",
+  "from": { "name": "Uligan, Maldives", "lat": 7.08, "lng": 72.92 },
+  "to": { "name": "Malé, Maldives", "lat": 4.175, "lng": 73.509 },
+  "coverImage": "/content/trips/dubai-to-langkawi/leg-2-maldives/photos/Maldives_20251225_daughters_beach_2.JPG"
+}

@@ -1,0 +1,230 @@
+On branch master
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	modified:   .DS_Store
+	new file:   .gitignore
+	modified:   CLAUDE.md
+	modified:   blog/next.config.mjs
+	modified:   blog/src/app/layout.tsx
+	new file:   blog/src/app/trips/[slug]/[leg]/[entry]/page.tsx
+	new file:   blog/src/components/EntryPageContent.tsx
+	modified:   blog/src/components/Footer.tsx
+	modified:   blog/src/components/Header.tsx
+	modified:   blog/src/components/LegPageContent.tsx
+	modified:   blog/src/lib/i18n.tsx
+	new file:   content/trips/dubai-to-langkawi/leg-1-passage-dubai-maldives/entries/2025-11-28-are-we-ready.mdx
+	deleted:    content/trips/dubai-to-langkawi/leg-1-passage-dubai-maldives/entries/2025-11-28-leaving-the-yard.mdx
+	renamed:    content/trips/dubai-to-langkawi/leg-1-passage-dubai-maldives/entries/2025-12-06-sea-trial.mdx -> content/trips/dubai-to-langkawi/leg-1-passage-dubai-maldives/entries/2025-12-06-challenges-starting.mdx
+	renamed:    content/trips/dubai-to-langkawi/leg-1-passage-dubai-maldives/entries/2025-12-07-sea-trial-2.mdx -> content/trips/dubai-to-langkawi/leg-1-passage-dubai-maldives/entries/2025-12-07-can-we-really-make-it.mdx
+	deleted:    content/trips/dubai-to-langkawi/leg-1-passage-dubai-maldives/entries/2025-12-10-close-call.mdx
+	new file:   content/trips/dubai-to-langkawi/leg-1-passage-dubai-maldives/entries/2025-12-10-who-says-oceanic-passages-are-boring.mdx
+	modified:   content/trips/dubai-to-langkawi/leg-1-passage-dubai-maldives/entries/2025-12-11-explosions-on-board.mdx
+	modified:   content/trips/dubai-to-langkawi/leg-1-passage-dubai-maldives/entries/2025-12-12-marlin.mdx
+	new file:   content/trips/dubai-to-langkawi/leg-1-passage-dubai-maldives/entries/2025-12-15-uligan-we-made-it.mdx
+	deleted:    content/trips/dubai-to-langkawi/leg-1-passage-dubai-maldives/entries/2025-12-15-uligan.mdx
+	new file:   content/trips/dubai-to-langkawi/leg-2-maldives/entries/2025-12-16-rain-rain-rain.mdx
+	renamed:    content/trips/dubai-to-langkawi/leg-2-the-maldives-begin/entries/2025-12-20-crossroads-marina.mdx -> content/trips/dubai-to-langkawi/leg-2-maldives/entries/2025-12-20-the-cavalry-arrives-at-crossroads-marina.mdx
+	renamed:    content/trips/dubai-to-langkawi/leg-3-marlins-and-mantas/entries/2025-12-21-cruising-to-goidhoo.mdx -> content/trips/dubai-to-langkawi/leg-2-maldives/entries/2025-12-21-cruising-to-goidhoo.mdx
+	renamed:    content/trips/dubai-to-langkawi/leg-3-marlins-and-mantas/entries/2025-12-22-goidhoo-family.mdx -> content/trips/dubai-to-langkawi/leg-2-maldives/entries/2025-12-22-the-best-anchorage.mdx
+	renamed:    content/trips/dubai-to-langkawi/leg-3-marlins-and-mantas/entries/2025-12-24-the-big-boy.mdx -> content/trips/dubai-to-langkawi/leg-2-maldives/entries/2025-12-24-the-big-boy.mdx
+	renamed:    content/trips/dubai-to-langkawi/leg-3-marlins-and-mantas/entries/2025-12-26-the-ocean-below.mdx -> content/trips/dubai-to-langkawi/leg-2-maldives/entries/2025-12-26-the-ocean-below.mdx
+	renamed:    content/trips/dubai-to-langkawi/leg-4-new-year/entries/2025-12-31-new-years-eve.mdx -> content/trips/dubai-to-langkawi/leg-2-maldives/entries/2025-12-31-goodbye-2025.mdx
+	new file:   content/trips/dubai-to-langkawi/leg-2-maldives/entries/2026-01-03-so-long-maldives.mdx
+	new file:   content/trips/dubai-to-langkawi/leg-2-maldives/leg.json
+	deleted:    content/trips/dubai-to-langkawi/leg-2-the-maldives-begin/entries/2025-12-16-welcome-uligan.mdx
+	deleted:    content/trips/dubai-to-langkawi/leg-2-the-maldives-begin/leg.json
+	deleted:    content/trips/dubai-to-langkawi/leg-2-the-maldives-begin/photos/2025-12-16_Were_all_set_1.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-2-the-maldives-begin/photos/Maldives_20251222_Airport_GirlsArrival.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-2-the-maldives-begin/photos/Maldives_20251222_Crossroads_ArtemisaAtMarina.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-2-the-maldives-begin/photos/Maldives_20251222_Crossroads_ArtemisaAtSunset.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-2-the-maldives-begin/photos/Maldives_20251222_Crossroads_CoralUnderwater.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-2-the-maldives-begin/photos/Maldives_20251222_Crossroads_FamilyAtPool.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-2-the-maldives-begin/photos/Maldives_20251222_Crossroads_GirlAtCircularArch.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-2-the-maldives-begin/photos/Maldives_20251222_Crossroads_HammockBeach.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-2-the-maldives-begin/photos/Maldives_20251222_Crossroads_ThreeWomenHardRockCafe.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-2-the-maldives-begin/photos/Maldives_20251222_Crossroads_WomanOnDock.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-3-marlins-and-mantas/.DS_Store
+	deleted:    content/trips/dubai-to-langkawi/leg-3-marlins-and-mantas/leg.json
+	deleted:    content/trips/dubai-to-langkawi/leg-3-marlins-and-mantas/photos/2025-12-24_Christmas_Dinner_Sorted_1.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-3-marlins-and-mantas/photos/2025-12-25-couple-beach-maldives.jpg
+	deleted:    content/trips/dubai-to-langkawi/leg-3-marlins-and-mantas/photos/2025-12-26-eugenia-turquoise-maldives.jpg
+	deleted:    content/trips/dubai-to-langkawi/leg-3-marlins-and-mantas/photos/2025-12-26-manta-close-maldives.mp4
+	deleted:    content/trips/dubai-to-langkawi/leg-3-marlins-and-mantas/photos/2025-12-26-manta-ray-maldives.mp4
+	deleted:    content/trips/dubai-to-langkawi/leg-3-marlins-and-mantas/photos/2025-12-26-sharks-maldives.mp4
+	deleted:    content/trips/dubai-to-langkawi/leg-3-marlins-and-mantas/photos/IMG_4123.MP4
+	deleted:    content/trips/dubai-to-langkawi/leg-3-marlins-and-mantas/photos/IMG_4129.MP4
+	deleted:    content/trips/dubai-to-langkawi/leg-3-marlins-and-mantas/photos/IMG_4130.MP4
+	deleted:    content/trips/dubai-to-langkawi/leg-3-marlins-and-mantas/photos/Maldives_20251222_Crossroads_RicardoAndWifeSelfie.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-3-marlins-and-mantas/photos/Maldives_20251222_Crossroads_WomanAtMarinaSign_2.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-3-marlins-and-mantas/photos/Maldives_20251222_Sailing_GirlInCockpit.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-3-marlins-and-mantas/photos/Maldives_20251222_Sailing_GirlsMaldivesFlag.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-3-marlins-and-mantas/photos/Maldives_20251222_Sailing_RicardoOnBow.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-3-marlins-and-mantas/photos/Maldives_20251222_Sailing_ThreeWomenSunset.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-3-marlins-and-mantas/photos/Maldives_20251222_Sailing_TwoGirlsInCockpit.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-3-marlins-and-mantas/photos/Maldives_20251223_family_fish_dock_8.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-3-marlins-and-mantas/photos/Maldives_20251223_group_marlin_sunset_1.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-3-marlins-and-mantas/photos/Maldives_20251224_Christmas_FamilyAtStern_1.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-3-marlins-and-mantas/photos/Maldives_20251225_couple_beach.JPG
+	deleted:    content/trips/dubai-to-langkawi/leg-3-marlins-and-mantas/photos/Maldives_20251225_ricardo_daughters_beach.JPG
+	deleted:    content/trips/dubai-to-langkawi/leg-3-marlins-and-mantas/photos/Maldives_20251226_video_14.MP4
+	deleted:    content/trips/dubai-to-langkawi/leg-3-marlins-and-mantas/photos/Marlin1.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-3-marlins-and-mantas/photos/marlinblue.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-3-marlins-and-mantas/photos/thecatch.jpeg
+	renamed:    content/trips/dubai-to-langkawi/leg-5-srilanka/entries/2026-01-07-galle-arrival.mdx -> content/trips/dubai-to-langkawi/leg-3-srilanka/entries/2026-01-07-galle-the-concrete-wall.mdx
+	renamed:    content/trips/dubai-to-langkawi/leg-5-srilanka/entries/2026-01-09-cool-vibes.mdx -> content/trips/dubai-to-langkawi/leg-3-srilanka/entries/2026-01-09-cool-vibes.mdx
+	renamed:    content/trips/dubai-to-langkawi/leg-5-srilanka/entries/2026-01-14-going-east-with-mr-smith.mdx -> content/trips/dubai-to-langkawi/leg-3-srilanka/entries/2026-01-14-going-east-with-mr-smith.mdx
+	renamed:    content/trips/dubai-to-langkawi/leg-5-srilanka/leg.json -> content/trips/dubai-to-langkawi/leg-3-srilanka/leg.json
+	deleted:    content/trips/dubai-to-langkawi/leg-4-new-year/entries/2026-01-01-fresh-start.mdx
+	deleted:    content/trips/dubai-to-langkawi/leg-4-new-year/leg.json
+	deleted:    content/trips/dubai-to-langkawi/leg-4-new-year/photos/2026-01-01_111_A_Fresh_Start_1.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-4-new-year/photos/Maldives_20251231_NewYear_FamilyAtHardRockCafe.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-4-new-year/photos/Maldives_20251231_NewYear_FamilyBeachParty_3.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-4-new-year/photos/Maldives_20251231_NewYear_GirlsDressedUp.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-4-new-year/photos/Maldives_20251231_NewYear_GoodBye2025.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-4-new-year/photos/Maldives_20251231_NewYear_Video_1.mp4
+	deleted:    content/trips/dubai-to-langkawi/leg-4-new-year/photos/Maldives_20260101_Departure_GirlAtMaleAirport.jpeg
+	renamed:    content/trips/dubai-to-langkawi/leg-6-passage-srilanka-thailand/entries/2026-01-14-first-night.mdx -> content/trips/dubai-to-langkawi/leg-4-passage-srilanka-thailand/entries/2026-01-14-the-first-night.mdx
+	renamed:    content/trips/dubai-to-langkawi/leg-6-passage-srilanka-thailand/entries/2026-01-15-the-jib.mdx -> content/trips/dubai-to-langkawi/leg-4-passage-srilanka-thailand/entries/2026-01-15-happy-bunnies-then-the-clew-went.mdx
+	renamed:    content/trips/dubai-to-langkawi/leg-6-passage-srilanka-thailand/entries/2026-01-16-fuel.mdx -> content/trips/dubai-to-langkawi/leg-4-passage-srilanka-thailand/entries/2026-01-16-the-smell-of-diesel.mdx
+	renamed:    content/trips/dubai-to-langkawi/leg-6-passage-srilanka-thailand/entries/2026-01-19-the-loose-screw.mdx -> content/trips/dubai-to-langkawi/leg-4-passage-srilanka-thailand/entries/2026-01-19-a-loose-screw-and-the-nicobar-question.mdx
+	renamed:    content/trips/dubai-to-langkawi/leg-6-passage-srilanka-thailand/entries/2026-01-22-the-final-boss.mdx -> content/trips/dubai-to-langkawi/leg-4-passage-srilanka-thailand/entries/2026-01-22-the-final-boss.mdx
+	renamed:    content/trips/dubai-to-langkawi/leg-6-passage-srilanka-thailand/leg.json -> content/trips/dubai-to-langkawi/leg-4-passage-srilanka-thailand/leg.json
+	deleted:    content/trips/dubai-to-langkawi/leg-5-srilanka/photos/2026-01-07-boat-provisioning-fish.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-5-srilanka/photos/2026-01-07-boat-provisioning-pineapple.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-5-srilanka/photos/2026-01-07-galle-artemisa-berth.jpg
+	deleted:    content/trips/dubai-to-langkawi/leg-5-srilanka/photos/2026-01-07-galle-bollard.jpg
+	deleted:    content/trips/dubai-to-langkawi/leg-5-srilanka/photos/2026-01-07-galle-tire-fender.jpg
+	deleted:    content/trips/dubai-to-langkawi/leg-5-srilanka/photos/2026-01-09-ament-bar-selfie.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-5-srilanka/photos/2026-01-09-beach-bar-crew-selfie.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-5-srilanka/photos/2026-01-09-cool-vibes-bar-lights.jpg
+	deleted:    content/trips/dubai-to-langkawi/leg-5-srilanka/photos/2026-01-09-cool-vibes-erwin.jpg
+	deleted:    content/trips/dubai-to-langkawi/leg-5-srilanka/photos/2026-01-09-cool-vibes-night-beach.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-5-srilanka/photos/2026-01-09-cool-vibes-pink-dusk.jpg
+	deleted:    content/trips/dubai-to-langkawi/leg-5-srilanka/photos/2026-01-09-cool-vibes-surfers.jpg
+	deleted:    content/trips/dubai-to-langkawi/leg-5-srilanka/photos/2026-01-09-unawatuna-dusk-bay.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-5-srilanka/photos/2026-01-09-unawatuna-sunset-surfers.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-5-srilanka/photos/2026-01-14-beach-restaurant-surfers.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-5-srilanka/photos/2026-01-14-unawatuna-beach-bunting.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-5-srilanka/photos/2026-01-14_Moving_on_1.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-5-srilanka/photos/2026-01-25-galle-fort-lighthouse-selfie.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-5-srilanka/photos/WhatsApp Video 2026-03-25 at 14.28.13.mp4
+	renamed:    content/trips/dubai-to-langkawi/leg-7-thailand/entries/2026-01-22-ko-racha-arrival.mdx -> content/trips/dubai-to-langkawi/leg-5-thailand/entries/2026-01-22-ko-racha-the-right-kind-of-shelter.mdx
+	renamed:    content/trips/dubai-to-langkawi/leg-7-thailand/entries/2026-01-23-sail-fix.mdx -> content/trips/dubai-to-langkawi/leg-5-thailand/entries/2026-01-23-rolly-tasker-and-the-impossible-dinghy.mdx
+	renamed:    content/trips/dubai-to-langkawi/leg-7-thailand/entries/2026-01-24-heading-north.mdx -> content/trips/dubai-to-langkawi/leg-5-thailand/entries/2026-01-24-erwins-itch-north-to-the-similans.mdx
+	renamed:    content/trips/dubai-to-langkawi/leg-7-thailand/entries/2026-01-27-similan.mdx -> content/trips/dubai-to-langkawi/leg-5-thailand/entries/2026-01-27-the-similans-beauty-with-conditions.mdx
+	renamed:    content/trips/dubai-to-langkawi/leg-7-thailand/entries/2026-02-01-phang-nga-karsts.mdx -> content/trips/dubai-to-langkawi/leg-5-thailand/entries/2026-02-01-phang-nga-bay-where-the-geology-got-carried-away.mdx
+	renamed:    content/trips/dubai-to-langkawi/leg-7-thailand/entries/2026-02-04-koh-panyee.mdx -> content/trips/dubai-to-langkawi/leg-5-thailand/entries/2026-02-04-koh-panyee-the-village-that-floats-the-anchor-that-wouldnt.mdx
+	renamed:    content/trips/dubai-to-langkawi/leg-7-thailand/entries/2026-02-05-running-aground.mdx -> content/trips/dubai-to-langkawi/leg-5-thailand/entries/2026-02-05-navionics-lied-just-the-once.mdx
+	renamed:    content/trips/dubai-to-langkawi/leg-7-thailand/entries/2026-02-09-paul-farewell.mdx -> content/trips/dubai-to-langkawi/leg-5-thailand/entries/2026-02-09-the-empire-calls-paul-home.mdx
+	renamed:    content/trips/dubai-to-langkawi/leg-7-thailand/leg.json -> content/trips/dubai-to-langkawi/leg-5-thailand/leg.json
+	deleted:    content/trips/dubai-to-langkawi/leg-6-passage-srilanka-thailand/photos/2026-01-14-bladder-fuel-tank-foredeck.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-6-passage-srilanka-thailand/photos/2026-01-14-harken-block-closeup.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-6-passage-srilanka-thailand/photos/2026-01-14-torn-harken-block.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-6-passage-srilanka-thailand/photos/2026-01-15-sailing-bay-of-bengal.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-6-passage-srilanka-thailand/photos/2026-01-17-erwin-cockpit-sunset.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-6-passage-srilanka-thailand/photos/2026-01-19-erwin-resting-cockpit.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-6-passage-srilanka-thailand/photos/2026-01-21-crew-selfie-sunset.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-6-passage-srilanka-thailand/photos/2026-01-23-delphi-fuel-filter-air-leak.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-6-passage-srilanka-thailand/photos/2026-01-23-navionics-approaching-thailand.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-6-passage-srilanka-thailand/photos/2026-01-24-crew-helm-arrival-sunset.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-6-passage-srilanka-thailand/photos/2026-01-24_Motor_motor_motor_1.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-6-passage-srilanka-thailand/photos/Apoyo de tierra.mp4
+	deleted:    content/trips/dubai-to-langkawi/leg-6-passage-srilanka-thailand/photos/Delfin video jib fix.mp4
+	renamed:    content/trips/dubai-to-langkawi/leg-8-passage-thailand-langkawi/entries/2026-02-03-phi-phi-tourist-trap.mdx -> content/trips/dubai-to-langkawi/leg-6-passage-thailand-langkawi/entries/2026-02-03-phi-phi-the-tourist-trap-that-actually-delivers.mdx
+	renamed:    content/trips/dubai-to-langkawi/leg-8-passage-thailand-langkawi/entries/2026-02-07-the-reggae-latitudes.mdx -> content/trips/dubai-to-langkawi/leg-6-passage-thailand-langkawi/entries/2026-02-07-the-reggae-latitudes.mdx
+	renamed:    content/trips/dubai-to-langkawi/leg-8-passage-thailand-langkawi/entries/2026-02-12-caves-and-jungle.mdx -> content/trips/dubai-to-langkawi/leg-6-passage-thailand-langkawi/entries/2026-02-12-trust-the-anchor.mdx
+	renamed:    content/trips/dubai-to-langkawi/leg-8-passage-thailand-langkawi/entries/2026-02-20-last-night-in-thailand.mdx -> content/trips/dubai-to-langkawi/leg-6-passage-thailand-langkawi/entries/2026-02-20-last-night-in-thailand.mdx
+	renamed:    content/trips/dubai-to-langkawi/leg-8-passage-thailand-langkawi/leg.json -> content/trips/dubai-to-langkawi/leg-6-passage-thailand-langkawi/leg.json
+	renamed:    content/trips/dubai-to-langkawi/leg-9-langkawi/entries/2026-02-25-llegada-a-langkawi.mdx -> content/trips/dubai-to-langkawi/leg-7-langkawi/entries/2026-02-25-arrival-in-langkawi-farewell-to-erwin.mdx
+	renamed:    content/trips/dubai-to-langkawi/leg-9-langkawi/entries/2026-02-26-the-big-boss-arrives.mdx -> content/trips/dubai-to-langkawi/leg-7-langkawi/entries/2026-02-26-the-big-boss-arrives.mdx
+	renamed:    content/trips/dubai-to-langkawi/leg-9-langkawi/entries/2026-02-27-island-hopping.mdx -> content/trips/dubai-to-langkawi/leg-7-langkawi/entries/2026-02-27-island-hopping.mdx
+	renamed:    content/trips/dubai-to-langkawi/leg-9-langkawi/entries/2026-02-28-happy-birthday-mum.mdx -> content/trips/dubai-to-langkawi/leg-7-langkawi/entries/2026-02-28-happy-birthday-mum-from-langkawi.mdx
+	renamed:    content/trips/dubai-to-langkawi/leg-9-langkawi/entries/2026-03-22-last-night-langkawi.mdx -> content/trips/dubai-to-langkawi/leg-7-langkawi/entries/2026-03-22-the-last-night-in-langkawi.mdx
+	renamed:    content/trips/dubai-to-langkawi/leg-9-langkawi/leg.json -> content/trips/dubai-to-langkawi/leg-7-langkawi/leg.json
+	deleted:    content/trips/dubai-to-langkawi/leg-7-thailand/photos/2026-01-22-ko-racha-friends-selfie.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-7-thailand/photos/2026-01-22-ko-racha-terrace-ricardo.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-7-thailand/photos/2026-01-23-rolly-tasker-sail-loft.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-7-thailand/photos/2026-01-23-sail-hardware-antal-block.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-7-thailand/photos/2026-01-24-artemisa-sunset-anchor.jpg
+	deleted:    content/trips/dubai-to-langkawi/leg-7-thailand/photos/2026-01-24-artemisa-track-thailand.png
+	deleted:    content/trips/dubai-to-langkawi/leg-7-thailand/photos/2026-01-24-crew-leo-beers.jpg
+	deleted:    content/trips/dubai-to-langkawi/leg-7-thailand/photos/2026-01-24-thap-lamu-crab-restaurant.jpg
+	deleted:    content/trips/dubai-to-langkawi/leg-7-thailand/photos/2026-01-27-similan-beach.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-7-thailand/photos/2026-01-27-similan-dinghy.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-7-thailand/photos/2026-01-27_Ilovevigingorda_1.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-7-thailand/photos/2026-02-01-artemisa-dawn-karsts.jpg
+	deleted:    content/trips/dubai-to-langkawi/leg-7-thailand/photos/2026-02-01-artemisa-sunset-karsts.jpg
+	deleted:    content/trips/dubai-to-langkawi/leg-7-thailand/photos/2026-02-01-dinghy-artemisa-karsts.jpg
+	deleted:    content/trips/dubai-to-langkawi/leg-7-thailand/photos/2026-02-01-limestone-pinnacle-dusk.jpg
+	deleted:    content/trips/dubai-to-langkawi/leg-7-thailand/photos/2026-02-01-phang-nga-limestone-cliff.jpg
+	deleted:    content/trips/dubai-to-langkawi/leg-7-thailand/photos/2026-02-01-phang-nga-limestone-sea-stacks.jpg
+	deleted:    content/trips/dubai-to-langkawi/leg-7-thailand/photos/2026-02-05-beach-longtail.jpg
+	deleted:    content/trips/dubai-to-langkawi/leg-7-thailand/photos/2026-02-05-beach-restaurant.jpg
+	deleted:    content/trips/dubai-to-langkawi/leg-7-thailand/photos/2026-02-05-beach-selfie.jpg
+	deleted:    content/trips/dubai-to-langkawi/leg-7-thailand/photos/2026-02-12-bay-cliff.jpg
+	deleted:    content/trips/dubai-to-langkawi/leg-7-thailand/photos/2026-02-12-cave.jpg
+	deleted:    content/trips/dubai-to-langkawi/leg-7-thailand/photos/2026-02-12-jungle-river.jpg
+	deleted:    content/trips/dubai-to-langkawi/leg-7-thailand/photos/2026-02-12-sunbathing.jpg
+	deleted:    content/trips/dubai-to-langkawi/leg-7-thailand/photos/2026-02-20-beach-bar-1.jpg
+	deleted:    content/trips/dubai-to-langkawi/leg-7-thailand/photos/2026-02-20-beach-bar-2.jpg
+	deleted:    content/trips/dubai-to-langkawi/leg-7-thailand/photos/2026-02-20-feet-up-night.jpg
+	deleted:    content/trips/dubai-to-langkawi/leg-7-thailand/photos/2026-02-20-live-band.jpg
+	deleted:    content/trips/dubai-to-langkawi/leg-7-thailand/photos/2026-03-26-koh-panyee-village-01.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-7-thailand/photos/2026-03-26-koh-panyee-village-04.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-7-thailand/photos/2026-03-26-phang-nga-karst-channel-01.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-7-thailand/photos/2026-03-26-phang-nga-karst-dusk-01.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-7-thailand/photos/GH011023.MP4
+	deleted:    content/trips/dubai-to-langkawi/leg-7-thailand/photos/Thailand-20160306-stilt-village-karst-mountains.JPG
+	deleted:    content/trips/dubai-to-langkawi/leg-7-thailand/photos/phangnga-2026-01-31-artemisa-bow-karst.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-7-thailand/photos/phangnga-2026-01-31-karst-peaks-calm-water.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-7-thailand/photos/phangnga-2026-02-02-longtail-limestone-channel.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-7-thailand/photos/phiphi-2026-02-04-anchorage-dusk.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-7-thailand/photos/phiphi-2026-02-04-crew-selfie-beach-bar.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-7-thailand/photos/phiphi-2026-02-06-beach-bar-night.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-7-thailand/photos/phuket-2026-01-25-erwin-helm-approaching.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-7-thailand/photos/similan-2026-01-26-boulder-cove.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-7-thailand/photos/similan-2026-01-26-rocky-shoreline-swimmers.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-7-thailand/photos/similan-2026-01-27-island-sunset.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-7-thailand/photos/similan-2026-01-27-viewpoint-bay-boats.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-8-passage-thailand-langkawi/photos/Reggea.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-8-passage-thailand-langkawi/photos/Thailand-20160301-tropical-island-cove-jungle.JPG
+	deleted:    content/trips/dubai-to-langkawi/leg-8-passage-thailand-langkawi/photos/Thailand-20160312-Erwin-dinghy-hidden-beach.JPG
+	deleted:    content/trips/dubai-to-langkawi/leg-8-passage-thailand-langkawi/photos/Thailand-20160315-koh-lanta-beach-calm-sea.JPG
+	deleted:    content/trips/dubai-to-langkawi/leg-8-passage-thailand-langkawi/photos/Thailand-20160316-beach-sunset-longtail-boats.JPG
+	deleted:    content/trips/dubai-to-langkawi/leg-8-passage-thailand-langkawi/photos/Thailand-20160316-selfie-beach-bar-with-crew.JPG
+	deleted:    content/trips/dubai-to-langkawi/leg-8-passage-thailand-langkawi/photos/phiphi-2026-02-03-island-village-shops.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-8-passage-thailand-langkawi/photos/phiphi-2026-02-04-anchorage-dusk.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-8-passage-thailand-langkawi/photos/phiphi-2026-02-04-cliff-emerald-water-2.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-8-passage-thailand-langkawi/photos/phiphi-2026-02-04-crew-selfie-beach-bar.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-8-passage-thailand-langkawi/photos/phiphi-2026-02-04-hidden-beach-cliffs.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-8-passage-thailand-langkawi/photos/phiphi-2026-02-04-maya-bay.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-8-passage-thailand-langkawi/photos/phiphi-2026-02-05-jungle-river.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-8-passage-thailand-langkawi/photos/phiphi-2026-02-05-jungle-waterfall.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-8-passage-thailand-langkawi/photos/phiphi-2026-02-05-viking-cave.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-8-passage-thailand-langkawi/photos/phiphi-2026-02-06-beach-bar-night.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-8-passage-thailand-langkawi/photos/phuket-2026-02-05-beach-bar-sunset.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-8-passage-thailand-langkawi/photos/thailand-2026-02-01-long-beach-bar.jpeg
+	deleted:    content/trips/dubai-to-langkawi/leg-9-langkawi/photos/2026-02-25-erwin-boat.jpg
+	deleted:    content/trips/dubai-to-langkawi/leg-9-langkawi/photos/2026-02-25-erwin-marina-bar.jpg
+	deleted:    content/trips/dubai-to-langkawi/leg-9-langkawi/photos/2026-02-25-erwin-restaurant.jpg
+	deleted:    content/trips/dubai-to-langkawi/leg-9-langkawi/photos/2026-02-25-langkawi-horizon.jpg
+	deleted:    content/trips/dubai-to-langkawi/leg-9-langkawi/photos/2026-02-26-artemisa-anchor-side.jpg
+	deleted:    content/trips/dubai-to-langkawi/leg-9-langkawi/photos/2026-02-26-artemisa-anchor-stern.jpg
+	deleted:    content/trips/dubai-to-langkawi/leg-9-langkawi/photos/2026-02-26-boss-arrives-aboard.jpg
+	deleted:    content/trips/dubai-to-langkawi/leg-9-langkawi/photos/2026-02-26-boss-beach-bar.jpg
+	deleted:    content/trips/dubai-to-langkawi/leg-9-langkawi/photos/2026-02-26-boss-dinghy.jpg
+	deleted:    content/trips/dubai-to-langkawi/leg-9-langkawi/photos/2026-02-26-boss-swing-beach.jpg
+	deleted:    content/trips/dubai-to-langkawi/leg-9-langkawi/photos/2026-02-26-boss-swing-karst.jpg
+	deleted:    content/trips/dubai-to-langkawi/leg-9-langkawi/photos/2026-02-26-champagne-cockpit.jpg
+	deleted:    content/trips/dubai-to-langkawi/leg-9-langkawi/photos/2026-02-26-karst-cliff.jpg
+	deleted:    content/trips/dubai-to-langkawi/leg-9-langkawi/photos/2026-02-26-ramen-on-board.jpg
+	deleted:    content/trips/dubai-to-langkawi/leg-9-langkawi/photos/2026-03-22-artemisa-covered.jpg
+	deleted:    content/trips/dubai-to-langkawi/leg-9-langkawi/photos/2026-03-22-langkawi-marina.jpg
+	deleted:    content/trips/dubai-to-langkawi/leg-9-langkawi/photos/2026-03-22-marina-waterfront.jpg
+	deleted:    content/trips/dubai-to-langkawi/leg-9-langkawi/photos/hero-dubai-to-langkawi.jpg
+	modified:   content/trips/dubai-to-langkawi/trip.json
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	gitoutput
+

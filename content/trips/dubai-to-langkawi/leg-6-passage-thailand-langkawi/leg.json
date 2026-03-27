@@ -1,0 +1,12 @@
+{
+  "slug": "leg-6-passage-thailand-langkawi",
+  "title": "Thailand to Langkawi — Passage",
+  "titleEs": "Tailandia a Langkawi — Navegación",
+  "summary": "The final passage — crossing the Thai-Malaysian border at sea, bound for Royal Langkawi Yacht Marina.",
+  "summaryEs": "La navegación final — cruzando la frontera tailandesa-malaya por mar, rumbo al Royal Langkawi Yacht Marina.",
+  "dateStart": "2026-02-20",
+  "dateEnd": "2026-02-25",
+  "from": { "name": "Southern Thailand", "lat": 6.55, "lng": 99.50 },
+  "to": { "name": "Royal Langkawi Yacht Marina, Malaysia", "lat": 6.312, "lng": 99.852 },
+  "coverImage": "/content/trips/dubai-to-langkawi/leg-6-passage-thailand-langkawi/photos/Thailand-20160316-beach-sunset-longtail-boats.JPG"
+}

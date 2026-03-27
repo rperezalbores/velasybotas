@@ -1,0 +1,13 @@
+{
+  "slug": "leg-5-thailand",
+  "title": "Thailand",
+  "titleEs": "Tailandia",
+  "summary": "The Similan Islands, limestone caves, jungle rivers, beach bars, and a last Thai sunset before crossing to Malaysia.",
+  "summaryEs": "Las islas Similán, cuevas de piedra caliza, ríos en la selva, chiringuitos de playa y un último atardecer tailandés antes de cruzar a Malasia.",
+  "dateStart": "2026-01-22",
+  "dateEnd": "2026-02-20",
+  "from": { "name": "Ko Racha, Thailand", "lat": 7.60, "lng": 98.37 },
+  "to": { "name": "Southern Thailand", "lat": 6.55, "lng": 99.50 },
+  "coverImage": "/content/trips/dubai-to-langkawi/leg-5-thailand/photos/2026-02-01-phang-nga-limestone-sea-stacks.jpg",
+  "coverImagePosition": "center 20%"
+}

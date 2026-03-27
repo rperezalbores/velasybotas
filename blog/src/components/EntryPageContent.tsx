@@ -1,0 +1,290 @@
+'use client'
+
+import React from 'react'
+import Breadcrumb from '@/components/Breadcrumb'
+import Comments from '@/components/Comments'
+import { Trip } from '@/types'
+import { renderInline } from '@/lib/renderText'
+import { useT } from '@/lib/i18n'
+import { useLocalizedTrip, useLocalizedLeg, useLocalizedEntry } from '@/lib/useLocalizedTrip'
+
+function formatDate(d: string) {
+  return new Date(d).toLocaleDateString('en-GB', {
+    weekday: 'long',
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  })
+}
+
+export default function EntryPageContent({
+  trip: rawTrip,
+  legIndex,
+  entryIndex,
+}: {
+  trip: Trip
+  legIndex: number
+  entryIndex: number
+}) {
+  const t = useT()
+  const localizedTrip = useLocalizedTrip(rawTrip)
+  const rawLeg = rawTrip.legs[legIndex]
+  const localizedLeg = useLocalizedLeg(rawLeg)
+  const rawEntry = rawLeg.entries[entryIndex]
+  const entry = useLocalizedEntry(rawEntry)
+
+  const prevEntry = entryIndex > 0 ? rawLeg.entries[entryIndex - 1] : null
+  const nextEntry = entryIndex < rawLeg.entries.length - 1 ? rawLeg.entries[entryIndex + 1] : null
+
+  const entryId = `${rawTrip.slug}/${rawLeg.slug}/${rawEntry.slug}`
+
+  return (
+    <div style={{ maxWidth: '860px', margin: '0 auto', padding: '4rem 2rem 6rem' }}>
+      <Breadcrumb
+        items={[
+          { label: t('nav.trips'), href: '/trips' },
+          { label: localizedTrip.title, href: `/trips/${rawTrip.slug}` },
+          { label: localizedLeg.title, href: `/trips/${rawTrip.slug}/${rawLeg.slug}` },
+          { label: entry.title },
+        ]}
+      />
+
+      {/* Back to leg link */}
+      <a
+        href={`/trips/${rawTrip.slug}/${rawLeg.slug}`}
+        style={{
+          display: 'inline-block',
+          fontFamily: 'var(--font-dm-mono)',
+          fontSize: '0.65rem',
+          color: 'var(--gold-500)',
+          letterSpacing: '0.12em',
+          textTransform: 'uppercase',
+          textDecoration: 'none',
+          marginBottom: '2.5rem',
+        }}
+      >
+        {t('entry.backToLeg')}
+      </a>
+
+      {/* Entry header */}
+      <div style={{ marginBottom: '3rem' }}>
+        <div
+          style={{
+            fontFamily: 'var(--font-dm-mono)',
+            fontSize: '0.7rem',
+            color: 'var(--gold-500)',
+            letterSpacing: '0.1em',
+            marginBottom: '1rem',
+          }}
+        >
+          {formatDate(rawEntry.date)} · {rawEntry.location}
+        </div>
+        <h1
+          style={{
+            fontFamily: 'var(--font-playfair)',
+            fontSize: 'clamp(2rem, 5vw, 3.25rem)',
+            fontWeight: 800,
+            color: 'var(--navy-900)',
+            margin: 0,
+            lineHeight: 1.1,
+          }}
+        >
+          {entry.title}
+        </h1>
+      </div>
+
+      {/* Entry content */}
+      <div className="prose-entry">
+        {(() => {
+          const blocks = entry.content.split('\n\n')
+          const nodes: React.ReactNode[] = []
+          let i = 0
+          while (i < blocks.length) {
+            const block = blocks[i].trim()
+
+            // PHOTOLEFT / PHOTORIGHT — flex row with next text block, vertically centered
+            const floatMatch = block.match(/^\[PHOTO(LEFT|RIGHT):(\d+)\]$/)
+            if (floatMatch) {
+              const side = floatMatch[1] === 'LEFT' ? 'left' : 'right'
+              const src = rawEntry.images[parseInt(floatMatch[2])]
+              const nextBlock = blocks[i + 1]?.trim()
+              const nextIsMedia = !!nextBlock?.match(/^\[(PHOTO|VIDEO)/)
+              const pairedText = nextBlock && !nextIsMedia ? nextBlock : undefined
+              if (src) {
+                const img = <img src={src} alt={entry.title} style={{ width: '42%', flexShrink: 0, height: 'auto', display: 'block', borderRadius: '2px' }} />
+                const txt = pairedText ? <div style={{ flex: 1 }}><p style={{ margin: 0 }}>{renderInline(pairedText)}</p></div> : null
+                nodes.push(
+                  <div key={i} style={{ display: 'flex', gap: '1.5rem', alignItems: 'center', margin: '2rem 0' }}>
+                    {side === 'left' ? <>{img}{txt}</> : <>{txt}{img}</>}
+                  </div>
+                )
+              }
+              i += pairedText ? 2 : 1
+              continue
+            }
+
+            // [PHOTOS:n,m] — side by side grid
+            const photosMatch = block.match(/^\[PHOTOS:(\d+),(\d+)\]$/)
+            if (photosMatch) {
+              const src1 = rawEntry.images[parseInt(photosMatch[1])]
+              const src2 = rawEntry.images[parseInt(photosMatch[2])]
+              if (src1 || src2) nodes.push(
+                <div key={i} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.5rem', margin: '2rem 0' }}>
+                  {src1 && <img src={src1} alt={entry.title} style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '2px' }} />}
+                  {src2 && <img src={src2} alt={entry.title} style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '2px' }} />}
+                </div>
+              )
+              i++; continue
+            }
+
+            // [PHOTO] / [PHOTO:n] — full width
+            const photoMatch = block.match(/^\[PHOTO(?::(\d+))?\]$/)
+            if (photoMatch) {
+              const src = rawEntry.images[photoMatch[1] ? parseInt(photoMatch[1]) : 0]
+              if (src) nodes.push(
+                <div key={i} style={{ width: '100%', margin: '2rem 0', textAlign: 'center', background: 'transparent' }}>
+                  <img src={src} alt={entry.title} style={{ maxWidth: '100%', maxHeight: '572px', width: 'auto', display: 'inline-block', background: 'transparent' }} />
+                </div>
+              )
+              i++; continue
+            }
+
+            // VIDEOLEFT / VIDEORIGHT — flex row with next text block, vertically centered
+            const videoFloatMatch = block.match(/^\[VIDEO(LEFT|RIGHT):(\d+)\]$/)
+            if (videoFloatMatch) {
+              const side = videoFloatMatch[1] === 'LEFT' ? 'left' : 'right'
+              const src = rawEntry.videos?.[parseInt(videoFloatMatch[2])] ?? rawEntry.video
+              const nextBlock = blocks[i + 1]?.trim()
+              const nextIsMedia = !!nextBlock?.match(/^\[(PHOTO|VIDEO)/)
+              const pairedText = nextBlock && !nextIsMedia ? nextBlock : undefined
+              if (src) {
+                const vid = <video controls playsInline style={{ width: '42%', flexShrink: 0, height: 'auto', display: 'block', borderRadius: '2px' }}><source src={src} type="video/mp4" /></video>
+                const txt = pairedText ? <div style={{ flex: 1 }}><p style={{ margin: 0 }}>{renderInline(pairedText)}</p></div> : null
+                nodes.push(
+                  <div key={i} style={{ display: 'flex', gap: '1.5rem', alignItems: 'center', margin: '2rem 0' }}>
+                    {side === 'left' ? <>{vid}{txt}</> : <>{txt}{vid}</>}
+                  </div>
+                )
+              }
+              i += pairedText ? 2 : 1
+              continue
+            }
+
+            // [VIDEO:n]
+            const videoMatch = block.match(/^\[VIDEO:(\d+)\]$/)
+            if (videoMatch) {
+              const src = rawEntry.videos?.[parseInt(videoMatch[1])] ?? rawEntry.video
+              if (src) nodes.push(
+                <div key={i} style={{ margin: '2rem 0', textAlign: 'center' }}>
+                  <video controls playsInline style={{ maxWidth: '100%', maxHeight: '572px', width: 'auto', display: 'inline-block' }}>
+                    <source src={src} type="video/mp4" />
+                  </video>
+                </div>
+              )
+              i++; continue
+            }
+
+            // plain text
+            if (block) nodes.push(<p key={i}>{renderInline(block)}</p>)
+            i++
+          }
+          return nodes
+        })()}
+      </div>
+
+      {/* Tags */}
+      <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginTop: '2rem' }}>
+        {rawEntry.tags.map((tag) => (
+          <span
+            key={tag}
+            style={{
+              fontFamily: 'var(--font-dm-mono)',
+              fontSize: '0.65rem',
+              color: 'var(--muted)',
+              background: '#f5f5f5',
+              padding: '3px 8px',
+              borderRadius: '2px',
+              letterSpacing: '0.06em',
+            }}
+          >
+            #{tag}
+          </span>
+        ))}
+      </div>
+
+      {/* Comments */}
+      <Comments entryId={entryId} />
+
+      {/* Prev / Next entry nav */}
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr',
+          gap: '1rem',
+          marginTop: '5rem',
+          paddingTop: '3rem',
+          borderTop: '1px solid rgba(0,0,0,0.08)',
+        }}
+      >
+        {prevEntry ? (
+          <a
+            href={`/trips/${rawTrip.slug}/${rawLeg.slug}/${prevEntry.slug}`}
+            style={{
+              textDecoration: 'none',
+              padding: '1.25rem',
+              border: '1px solid rgba(0,0,0,0.08)',
+              borderRadius: '2px',
+              transition: 'box-shadow 0.2s',
+            }}
+          >
+            <div style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '0.65rem', color: 'var(--muted)', letterSpacing: '0.1em', marginBottom: '4px' }}>
+              {t('entry.prevEntry')}
+            </div>
+            <div style={{ fontFamily: 'var(--font-playfair)', fontSize: '1rem', fontWeight: 600, color: 'var(--navy-900)' }}>
+              {prevEntry.title}
+            </div>
+          </a>
+        ) : (
+          <a
+            href={`/trips/${rawTrip.slug}/${rawLeg.slug}`}
+            style={{
+              textDecoration: 'none',
+              padding: '1.25rem',
+              border: '1px solid rgba(0,0,0,0.08)',
+              borderRadius: '2px',
+              transition: 'box-shadow 0.2s',
+            }}
+          >
+            <div style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '0.65rem', color: 'var(--muted)', letterSpacing: '0.1em', marginBottom: '4px' }}>
+              {t('entry.backToLeg')}
+            </div>
+            <div style={{ fontFamily: 'var(--font-playfair)', fontSize: '1rem', fontWeight: 600, color: 'var(--navy-900)' }}>
+              {localizedLeg.title}
+            </div>
+          </a>
+        )}
+
+        {nextEntry && (
+          <a
+            href={`/trips/${rawTrip.slug}/${rawLeg.slug}/${nextEntry.slug}`}
+            style={{
+              textDecoration: 'none',
+              padding: '1.25rem',
+              border: '1px solid rgba(0,0,0,0.08)',
+              borderRadius: '2px',
+              textAlign: 'right',
+              transition: 'box-shadow 0.2s',
+            }}
+          >
+            <div style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '0.65rem', color: 'var(--muted)', letterSpacing: '0.1em', marginBottom: '4px' }}>
+              {t('entry.nextEntry')}
+            </div>
+            <div style={{ fontFamily: 'var(--font-playfair)', fontSize: '1rem', fontWeight: 600, color: 'var(--navy-900)' }}>
+              {nextEntry.title}
+            </div>
+          </a>
+        )}
+      </div>
+    </div>
+  )
+}

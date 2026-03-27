@@ -1,0 +1,12 @@
+{
+  "slug": "leg-4-passage-srilanka-thailand",
+  "title": "Sri Lanka to Thailand — Passage",
+  "titleEs": "Sri Lanka a Tailandia — Navegación",
+  "summary": "Eight days against the monsoon — a jib clew that failed mid-ocean, fuel bladders that leaked, an engine hunting revs for days, and a final fight on the foredeck fifty miles from Phuket. We made it east.",
+  "summaryEs": "Ocho días contra el monzón — un puño de escota que cedió en mitad del océano, depósitos de gasoil que rezumaban, un motor cazando revoluciones durante días y una última pelea en la proa a cincuenta millas de Phuket. Lo conseguimos rumbo al este.",
+  "dateStart": "2026-01-14",
+  "dateEnd": "2026-01-24",
+  "from": { "name": "Galle, Sri Lanka", "lat": 6.03, "lng": 80.20 },
+  "to": { "name": "Phuket, Thailand", "lat": 7.87, "lng": 98.40 },
+  "coverImage": "/content/trips/dubai-to-langkawi/leg-4-passage-srilanka-thailand/photos/2026-01-24-crew-helm-arrival-sunset.jpeg"
+}

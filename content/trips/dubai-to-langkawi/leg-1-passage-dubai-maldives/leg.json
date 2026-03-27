@@ -1,0 +1,12 @@
+{
+  "slug": "leg-1-passage-dubai-maldives",
+  "title": "Dubai to Maldives — Passage",
+  "titleEs": "Dubái a Maldivas — Navegación",
+  "summary": "Nine days across the Arabian Sea, shorthanded. Hormuz behind us, the Maldives ahead. Everything that could go wrong did — and we sorted it.",
+  "summaryEs": "Nueve días cruzando el Mar Arábigo con tripulación mínima. Hormuz a popa, las Maldivas a proa. Todo lo que podía ir mal fue mal — y lo solucionamos.",
+  "dateStart": "2025-12-06",
+  "dateEnd": "2025-12-15",
+  "from": { "name": "Muscat, Oman", "lat": 23.61, "lng": 58.59 },
+  "to": { "name": "Uligan, Maldives", "lat": 7.08, "lng": 72.92 },
+  "coverImage": "/content/trips/dubai-to-langkawi/leg-1-passage-dubai-maldives/photos/rak-marina-2025-12-artemisa-at-dock-departure.jpeg"
+}
