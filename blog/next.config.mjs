@@ -50,6 +50,8 @@ const nextConfig = {
               "font-src 'self'",
               // API calls: Supabase + Mapbox
               "connect-src 'self' https://*.supabase.co https://api.mapbox.com https://events.mapbox.com https://*.tiles.mapbox.com",
+              // Videos from R2 CDN
+              "media-src 'self' https://pub-3b2faf4e0ab04a05907f60ff781623b7.r2.dev",
               // Workers: Next.js + Mapbox use blob workers
               "worker-src blob:",
               // No plugins, no object embeds
