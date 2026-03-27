@@ -8,5 +8,5 @@
   "dateEnd": "2026-03-22",
   "from": { "name": "Royal Langkawi Yacht Marina, Malaysia", "lat": 6.312, "lng": 99.852 },
   "to": { "name": "Royal Langkawi Yacht Marina, Malaysia", "lat": 6.312, "lng": 99.852 },
-  "coverImage": "/content/trips/dubai-to-langkawi/leg-7-langkawi/photos/2026-02-25-langkawi-horizon.jpg"
+  "coverImage": "https://pub-3b2faf4e0ab04a05907f60ff781623b7.r2.dev/trips/dubai-to-langkawi/leg-7-langkawi/photos/2026-02-25-langkawi-horizon.jpg"
 }

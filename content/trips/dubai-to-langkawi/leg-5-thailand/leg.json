@@ -8,6 +8,6 @@
   "dateEnd": "2026-02-20",
   "from": { "name": "Ko Racha, Thailand", "lat": 7.60, "lng": 98.37 },
   "to": { "name": "Southern Thailand", "lat": 6.55, "lng": 99.50 },
-  "coverImage": "/content/trips/dubai-to-langkawi/leg-5-thailand/photos/2026-02-01-phang-nga-limestone-sea-stacks.jpg",
+  "coverImage": "https://pub-3b2faf4e0ab04a05907f60ff781623b7.r2.dev/trips/dubai-to-langkawi/leg-5-thailand/photos/2026-02-01-phang-nga-limestone-sea-stacks.jpg",
   "coverImagePosition": "center 20%"
 }

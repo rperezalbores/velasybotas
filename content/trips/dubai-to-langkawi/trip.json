@@ -9,7 +9,7 @@
   "type": "sailing",
   "dateStart": "2025-12-01",
   "dateEnd": "2026-03-22",
-  "coverImage": "/content/trips/dubai-to-langkawi/leg-7-langkawi/photos/hero-dubai-to-langkawi.jpg",
+  "coverImage": "https://pub-3b2faf4e0ab04a05907f60ff781623b7.r2.dev/trips/dubai-to-langkawi/leg-7-langkawi/photos/hero-dubai-to-langkawi.jpg",
   "featured": true,
   "tags": ["sailing", "bluewater", "artemisa", "indian-ocean", "maldives", "sri-lanka", "thailand", "langkawi"],
   "route": {

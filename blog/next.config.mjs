@@ -4,6 +4,7 @@ const nextConfig = {
     remotePatterns: [
       { protocol: 'https', hostname: 'images.unsplash.com' },
       { protocol: 'https', hostname: 'upload.wikimedia.org' },
+      { protocol: 'https', hostname: 'pub-3b2faf4e0ab04a05907f60ff781623b7.r2.dev' },
     ],
   },
 
@@ -44,7 +45,7 @@ const nextConfig = {
               // Tailwind, framer-motion, mapbox all use inline styles
               "style-src 'self' 'unsafe-inline'",
               // Images: local + unsplash + wikimedia + mapbox tiles + data URIs
-              "img-src 'self' data: blob: https://images.unsplash.com https://upload.wikimedia.org https://*.mapbox.com https://*.tiles.mapbox.com",
+              "img-src 'self' data: blob: https://images.unsplash.com https://upload.wikimedia.org https://*.mapbox.com https://*.tiles.mapbox.com https://pub-3b2faf4e0ab04a05907f60ff781623b7.r2.dev",
               // Fonts: self only (no Google Fonts in use)
               "font-src 'self'",
               // API calls: Supabase + Mapbox

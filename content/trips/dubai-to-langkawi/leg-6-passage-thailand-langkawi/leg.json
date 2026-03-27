@@ -8,5 +8,5 @@
   "dateEnd": "2026-02-25",
   "from": { "name": "Southern Thailand", "lat": 6.55, "lng": 99.50 },
   "to": { "name": "Royal Langkawi Yacht Marina, Malaysia", "lat": 6.312, "lng": 99.852 },
-  "coverImage": "/content/trips/dubai-to-langkawi/leg-6-passage-thailand-langkawi/photos/Thailand-20160316-beach-sunset-longtail-boats.JPG"
+  "coverImage": "https://pub-3b2faf4e0ab04a05907f60ff781623b7.r2.dev/trips/dubai-to-langkawi/leg-6-passage-thailand-langkawi/photos/Thailand-20160316-beach-sunset-longtail-boats.JPG"
 }
