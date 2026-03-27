@@ -52,7 +52,7 @@ export default function RouteMap({
 
       const map = new mapboxgl.Map({
         container: containerRef.current,
-        style: 'mapbox://styles/mapbox/dark-v11',
+        style: 'mapbox://styles/mapbox/outdoors-v12',
         center: defaultCenter,
         zoom,
         attributionControl: false,
