@@ -29,9 +29,10 @@ export default function LegPageContent({ trip: rawTrip, legIndex }: { trip: Trip
     ],
   }
 
-  const entryMarkers = rawLeg.entries
-    .filter((e) => e.coords)
-    .map((e) => ({ coords: e.coords!, label: e.title }))
+  const legMarkers = [
+    { coords: rawLeg.fromCoords, label: rawLeg.from },
+    { coords: rawLeg.toCoords, label: rawLeg.to },
+  ]
 
   return (
     <>
@@ -157,7 +158,7 @@ export default function LegPageContent({ trip: rawTrip, legIndex }: { trip: Trip
           </div>
           <RouteMap
             route={legRoute}
-            markers={entryMarkers}
+            markers={legMarkers}
             height="280px"
             zoom={5}
             center={[
