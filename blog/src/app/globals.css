@@ -182,6 +182,8 @@ body::before {
   width: 100%;
   height: 100%;
   border-radius: inherit;
+  position: relative;
+  overflow: hidden;
 }
 
 /* Gold rule */
