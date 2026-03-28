@@ -39,17 +39,24 @@ Reference template: `blog/.env.local.example`
 
 ## Blog Structure
 
-Entries span 1–4 months each, organized as **Voyages → Legs → Entries**.
+Two trip structures are supported:
+
+- **Short trips** (flat) — no legs, entries sit directly in the trip folder. URL: `/trips/[slug]/entries/[entry]`
+- **Long trips** (multi-leg) — entries nested inside leg subfolders. URL: `/trips/[slug]/[leg-slug]/[entry]`
+
+Detection is automatic: if `entries/` exists directly inside the trip folder → flat trip. No flag needed in `trip.json`.
 
 ### URL Hierarchy
 
 ```
-/                          → Home: featured trip + world map overview
-/trips                     → All trips (timeline list)
-/trips/[slug]              → Trip page: route map, leg list, summary
-/trips/[slug]/[leg-slug]   → Leg page: entries, photos, map segment
-/map                       → Full world map — all routes + clickable pins
-/about                     → About Ricardo
+/                                        → Home: featured trip + world map overview
+/trips                                   → All trips (timeline list)
+/trips/[slug]                            → Trip page
+/trips/[slug]/entries/[entry]            → Entry page (short/flat trip)
+/trips/[slug]/[leg-slug]                 → Leg page (long/multi-leg trip)
+/trips/[slug]/[leg-slug]/[entry]         → Entry page (long/multi-leg trip)
+/map                                     → Full world map — all routes + clickable pins
+/about                                   → About Ricardo
 ```
 
 Trip types: `pilgrimage` | `camino` | `sailing` | `travel`
@@ -91,29 +98,26 @@ TRAVELBLOG/
 │   └── about/page.tsx
 ├── content/
 │   └── trips/
-│       ├── rocio-2025/                        (Romería de El Rocío — May 2025)
-│       │   ├── trip.json                      (metadata, route, hermandad details)
-│       │   └── entries/
-│       │       └── *.mdx
-│       ├── via-de-la-plata-2025/              (Camino Vía de la Plata — June 2025)
+│       ├── rocio-2025/                        (Romería de El Rocío — May 2025) [FLAT]
 │       │   ├── trip.json
-│       │   └── entries/
+│       │   └── entries/                       ← flat: entries directly here, no leg subfolder
 │       │       └── *.mdx
-│       ├── dubai-to-langkawi/                 (Sailing — Dec 2025 to Mar 2026, Artemisa's maiden blue water passage)
-│       │   ├── trip.json                      (metadata, full route GeoJSON)
-│       │   ├── leg-1-dubai-maldives/
+│       ├── via-de-la-plata-2025/              (Camino Vía de la Plata — June 2025) [MULTI-LEG]
+│       │   ├── trip.json
+│       │   ├── sevilla-merida/
 │       │   │   ├── leg.json
 │       │   │   └── entries/*.mdx
-│       │   ├── leg-2-maldives-sri-lanka/
+│       │   └── [more legs…]
+│       ├── dubai-to-langkawi/                 (Sailing — Dec 2025 to Mar 2026) [MULTI-LEG]
+│       │   ├── trip.json
+│       │   ├── leg-1-passage-dubai-maldives/
 │       │   │   ├── leg.json
 │       │   │   └── entries/*.mdx
-│       │   ├── leg-3-sri-lanka-thailand/
+│       │   ├── leg-2-maldives/
 │       │   │   ├── leg.json
 │       │   │   └── entries/*.mdx
-│       │   └── leg-4-thailand-langkawi/
-│       │       ├── leg.json
-│       │       └── entries/*.mdx
-│       └── camino-del-norte-2026/             (Camino del Norte — June 2026)
+│       │   └── [more legs…]
+│       └── camino-del-norte-2026/             (Camino del Norte — June 2026) [FLAT]
 │           ├── trip.json
 │           └── entries/
 │               └── *.mdx
