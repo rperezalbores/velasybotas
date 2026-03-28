@@ -5,12 +5,21 @@
   "subtitle": "Con la Hermandad de Puente Genil",
   "subtitleEs": "Con la Hermandad de Puente Genil",
   "type": "pilgrimage",
-  "dateStart": "2025-05-01",
-  "dateEnd": "2025-05-31",
+  "dateStart": "2025-06-03",
+  "dateEnd": "2025-06-08",
   "summary": "A million people, a hundred brotherhoods, oxcarts through the marshes of Doñana. The Romería de El Rocío is not a religious event. It is an act of mass poetry.",
   "summaryEs": "Un millón de personas, cien hermandades, carretas por las marismas de Doñana. La Romería de El Rocío no es un acto religioso. Es un acto de poesía colectiva.",
-  "coverImage": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80",
+  "coverImage": "https://pub-3b2faf4e0ab04a05907f60ff781623b7.r2.dev/trips/rocio-2025/camino-puente-genil/photos/Sel_Rocio_20250608_flamenco_singing.jpeg",
   "tags": ["camino", "andalucia", "pilgrimage", "spain"],
-  "route": null,
+  "route": {
+    "type": "LineString",
+    "coordinates": [
+      [-4.774, 37.396],
+      [-5.200, 37.350],
+      [-5.600, 37.280],
+      [-6.000, 37.200],
+      [-6.487, 37.128]
+    ]
+  },
   "featured": false
 }
