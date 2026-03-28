@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import TripCard from '@/components/TripCard'
 import { useT } from '@/lib/i18n'
 import { useLocalizedTrip } from '@/lib/useLocalizedTrip'
@@ -28,17 +29,13 @@ export default function HomePageContent({ featured: rawFeatured, others }: Props
           overflow: 'hidden',
         }}
       >
-        <img
+        <Image
           src={featured.coverImage}
           alt={featured.title}
-          style={{
-            position: 'absolute',
-            inset: 0,
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            objectPosition: 'center 40%',
-          }}
+          fill
+          priority
+          sizes="100vw"
+          style={{ objectFit: 'cover', objectPosition: 'center 40%' }}
         />
         {/* Multi-layer gradient */}
         <div

@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { Trip } from '@/types'
 import { useT } from '@/lib/i18n'
 import { useLocalizedTrip } from '@/lib/useLocalizedTrip'
@@ -41,22 +42,18 @@ export default function TripCard({ trip: rawTrip, featured = false }: { trip: Tr
             position: 'relative',
             borderRadius: '2px',
             overflow: 'hidden',
-            height: '520px',
+            height: 'clamp(300px, 55vw, 520px)',
             cursor: 'pointer',
           }}
         >
           {/* Background image */}
-          <img
+          <Image
             src={trip.coverImage}
             alt={trip.title}
-            style={{
-              position: 'absolute',
-              inset: 0,
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              transition: 'transform 0.6s ease',
-            }}
+            fill
+            priority
+            sizes="(max-width: 768px) 100vw, 1200px"
+            style={{ objectFit: 'cover', transition: 'transform 0.6s ease' }}
           />
           {/* Gradient overlay */}
           <div
@@ -170,20 +167,16 @@ export default function TripCard({ trip: rawTrip, featured = false }: { trip: Tr
           position: 'relative',
           borderRadius: '2px',
           overflow: 'hidden',
-          height: '340px',
+          height: 'clamp(200px, 40vw, 340px)',
           cursor: 'pointer',
         }}
       >
-        <img
+        <Image
           src={trip.coverImage}
           alt={trip.title}
-          style={{
-            position: 'absolute',
-            inset: 0,
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-          }}
+          fill
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
+          style={{ objectFit: 'cover' }}
         />
         <div
           style={{

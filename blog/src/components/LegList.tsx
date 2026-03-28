@@ -14,18 +14,7 @@ function LocalizedLegRow({ leg, trip, index }: { leg: Trip['legs'][0]; trip: Tri
       style={{ textDecoration: 'none' }}
     >
       <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: '64px 1fr auto',
-          gap: '1.5rem',
-          padding: '1.75rem',
-          background: '#fafafa',
-          border: '1px solid rgba(0,0,0,0.06)',
-          borderRadius: '2px',
-          transition: 'background 0.2s, box-shadow 0.2s',
-          alignItems: 'center',
-          cursor: 'pointer',
-        }}
+        className="leg-row"
         onMouseEnter={(e) => {
           ;(e.currentTarget as HTMLElement).style.background = 'white'
           ;(e.currentTarget as HTMLElement).style.boxShadow = '0 4px 20px rgba(0,0,0,0.08)'

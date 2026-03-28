@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react'
+import Image from 'next/image'
 import Breadcrumb from '@/components/Breadcrumb'
 import Comments from '@/components/Comments'
 import { Trip } from '@/types'
@@ -39,7 +40,7 @@ export default function EntryPageContent({
   const entryId = `${rawTrip.slug}/${rawLeg.slug}/${rawEntry.slug}`
 
   return (
-    <div style={{ maxWidth: '860px', margin: '0 auto', padding: '4rem 2rem 6rem' }}>
+    <div style={{ maxWidth: '860px', margin: '0 auto', padding: 'clamp(2rem, 5vw, 4rem) clamp(1rem, 4vw, 2rem) clamp(3rem, 6vw, 6rem)' }}>
       <Breadcrumb
         items={[
           { label: t('nav.trips'), href: '/trips' },
@@ -111,11 +112,11 @@ export default function EntryPageContent({
               const nextIsMedia = !!nextBlock?.match(/^\[(PHOTO|VIDEO)/)
               const pairedText = nextBlock && !nextIsMedia ? nextBlock : undefined
               if (src) {
-                const img = <img src={src} alt={entry.title} style={{ width: '42%', flexShrink: 0, height: 'auto', display: 'block', borderRadius: '2px' }} />
+                const img = <Image src={src} alt={entry.title} width={900} height={1350} className="media-float-item" sizes="(max-width: 600px) 100vw, 42vw" style={{ height: 'auto', display: 'block', borderRadius: '2px' }} />
                 const txt = pairedText ? <div style={{ flex: 1 }}><p style={{ margin: 0 }}>{renderInline(pairedText)}</p></div> : null
                 nodes.push(
-                  <div key={i} style={{ display: 'flex', gap: '1.5rem', alignItems: 'center', margin: '2rem 0' }}>
-                    {side === 'left' ? <>{img}{txt}</> : <>{txt}{img}</>}
+                  <div key={i} className="media-float" style={{ flexDirection: side === 'left' ? 'row' : 'row-reverse' }}>
+                    {img}{txt}
                   </div>
                 )
               }
@@ -130,8 +131,8 @@ export default function EntryPageContent({
               const src2 = rawEntry.images[parseInt(photosMatch[2])]
               if (src1 || src2) nodes.push(
                 <div key={i} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.5rem', margin: '2rem 0' }}>
-                  {src1 && <img src={src1} alt={entry.title} style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '2px' }} />}
-                  {src2 && <img src={src2} alt={entry.title} style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '2px' }} />}
+                  {src1 && <Image src={src1} alt={entry.title} width={900} height={600} sizes="(max-width: 860px) 50vw, 430px" style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '2px' }} />}
+                  {src2 && <Image src={src2} alt={entry.title} width={900} height={600} sizes="(max-width: 860px) 50vw, 430px" style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '2px' }} />}
                 </div>
               )
               i++; continue
@@ -143,7 +144,7 @@ export default function EntryPageContent({
               const src = rawEntry.images[photoMatch[1] ? parseInt(photoMatch[1]) : 0]
               if (src) nodes.push(
                 <div key={i} style={{ width: '100%', margin: '2rem 0', textAlign: 'center', background: 'transparent' }}>
-                  <img src={src} alt={entry.title} style={{ maxWidth: '100%', maxHeight: '572px', width: 'auto', display: 'inline-block', background: 'transparent' }} />
+                  <Image src={src} alt={entry.title} width={1800} height={1200} sizes="(max-width: 860px) 100vw, 860px" style={{ maxWidth: '100%', maxHeight: '572px', width: 'auto', height: 'auto', display: 'inline-block' }} />
                 </div>
               )
               i++; continue
@@ -158,11 +159,11 @@ export default function EntryPageContent({
               const nextIsMedia = !!nextBlock?.match(/^\[(PHOTO|VIDEO)/)
               const pairedText = nextBlock && !nextIsMedia ? nextBlock : undefined
               if (src) {
-                const vid = <video controls playsInline style={{ width: '42%', flexShrink: 0, height: 'auto', display: 'block', borderRadius: '2px' }}><source src={src} type="video/mp4" /></video>
+                const vid = <video controls playsInline className="media-float-item" style={{ height: 'auto', display: 'block', borderRadius: '2px', maxWidth: '100%' }}><source src={src} type="video/mp4" /></video>
                 const txt = pairedText ? <div style={{ flex: 1 }}><p style={{ margin: 0 }}>{renderInline(pairedText)}</p></div> : null
                 nodes.push(
-                  <div key={i} style={{ display: 'flex', gap: '1.5rem', alignItems: 'center', margin: '2rem 0' }}>
-                    {side === 'left' ? <>{vid}{txt}</> : <>{txt}{vid}</>}
+                  <div key={i} className="media-float" style={{ flexDirection: side === 'left' ? 'row' : 'row-reverse' }}>
+                    {vid}{txt}
                   </div>
                 )
               }

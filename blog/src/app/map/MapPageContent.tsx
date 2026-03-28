@@ -2,6 +2,7 @@
 
 import RouteMap from '@/components/Map/RouteMap'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useT } from '@/lib/i18n'
 import { useLocalizedTrip } from '@/lib/useLocalizedTrip'
 import { Trip } from '@/types'
@@ -32,9 +33,11 @@ function LocalizedTripLink({ trip: rawTrip }: { trip: Trip }) {
           flexShrink: 0,
         }}
       >
-        <img
+        <Image
           src={rawTrip.coverImage}
           alt={trip.title}
+          width={48}
+          height={48}
           style={{ width: '100%', height: '100%', objectFit: 'cover' }}
         />
       </div>
@@ -114,7 +117,7 @@ export default function MapPageContent({ trips }: { trips: Trip[] }) {
       <RouteMap
         route={tripsWithRoutes[0]?.route}
         markers={tripsWithRoutes[0]?.legs.map((l) => ({ coords: l.fromCoords, label: l.from })) ?? []}
-        height="520px"
+        height="clamp(280px, 45vw, 520px)"
         zoom={3}
         center={[77, 10]}
       />

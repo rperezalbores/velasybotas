@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import Breadcrumb from '@/components/Breadcrumb'
 import RouteMap from '@/components/Map/RouteMap'
 import LegList from '@/components/LegList'
@@ -43,7 +44,7 @@ export default function TripPageContent({ trip: rawTrip }: { trip: Trip }) {
     <>
       {/* Hero */}
       <div className="hero-image-container" style={{ height: '65vh' }}>
-        <img src={rawTrip.coverImage} alt={trip.title} />
+        <Image src={rawTrip.coverImage} alt={trip.title} fill priority sizes="100vw" style={{ objectFit: 'cover' }} />
         <div
           style={{
             position: 'absolute',

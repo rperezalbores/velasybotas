@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import Breadcrumb from '@/components/Breadcrumb'
 import RouteMap from '@/components/Map/RouteMap'
 import { Trip, GeoJSONLineString } from '@/types'
@@ -38,7 +39,7 @@ export default function LegPageContent({ trip: rawTrip, legIndex }: { trip: Trip
     <>
       {/* Hero */}
       <div className="hero-image-container" style={{ height: '55vh' }}>
-        <img src={rawLeg.coverImage} alt={leg.title} style={rawLeg.coverImagePosition ? { objectPosition: rawLeg.coverImagePosition } : undefined} />
+        <Image src={rawLeg.coverImage} alt={leg.title} fill priority sizes="100vw" style={{ objectFit: 'cover', ...(rawLeg.coverImagePosition ? { objectPosition: rawLeg.coverImagePosition } : {}) }} />
         <div
           style={{
             position: 'absolute',
@@ -352,19 +353,17 @@ function LocalizedEntryCard({
           flex: '0 0 42%',
           overflow: 'hidden',
           background: '#f0ece3',
+          position: 'relative',
+          aspectRatio: '4/3',
         }}
       >
         {coverImage ? (
-          <img
+          <Image
             src={coverImage}
             alt={entry.title}
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              display: 'block',
-              aspectRatio: '4/3',
-            }}
+            fill
+            sizes="(max-width: 640px) 100vw, 42vw"
+            style={{ objectFit: 'cover' }}
           />
         ) : (
           <div
