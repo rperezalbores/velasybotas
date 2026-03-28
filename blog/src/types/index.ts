@@ -55,6 +55,7 @@ export interface Trip {
   tags: string[]
   legs: Leg[]
   featured?: boolean
+  flat?: boolean
 }
 
 export interface GeoJSONLineString {

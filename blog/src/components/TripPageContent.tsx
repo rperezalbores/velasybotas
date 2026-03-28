@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Breadcrumb from '@/components/Breadcrumb'
 import RouteMap from '@/components/Map/RouteMap'
 import LegList from '@/components/LegList'
+import LocalizedEntryCard from '@/components/LocalizedEntryCard'
 import { Trip } from '@/types'
 import { useT } from '@/lib/i18n'
 import { useLocalizedTrip } from '@/lib/useLocalizedTrip'
@@ -24,11 +25,11 @@ export default function TripPageContent({ trip: rawTrip }: { trip: Trip }) {
   const trip = useLocalizedTrip(rawTrip)
 
   const isUpcoming = new Date(rawTrip.dateStart) > new Date()
-  const allMarkers = rawTrip.legs.map((leg) => ({
+  const allMarkers = rawTrip.flat ? [] : rawTrip.legs.map((leg) => ({
     coords: leg.fromCoords,
     label: leg.from,
   }))
-  if (rawTrip.legs.length > 0) {
+  if (!rawTrip.flat && rawTrip.legs.length > 0) {
     const last = rawTrip.legs[rawTrip.legs.length - 1]
     allMarkers.push({ coords: last.toCoords, label: last.to })
   }
@@ -131,7 +132,9 @@ export default function TripPageContent({ trip: rawTrip }: { trip: Trip }) {
             { label: t('trip.start'), value: formatDate(rawTrip.dateStart) },
             { label: t('trip.end'), value: isUpcoming ? t('trip.upcoming') : formatDate(rawTrip.dateEnd) },
             { label: t('trip.type'), value: typeLabel[rawTrip.type] },
-            { label: t('trip.legsCount'), value: rawTrip.legs.length > 0 ? `${rawTrip.legs.length}` : '—' },
+            rawTrip.flat
+              ? { label: t('leg.entries'), value: `${rawTrip.legs[0]?.entries.length ?? 0}` }
+              : { label: t('trip.legsCount'), value: rawTrip.legs.length > 0 ? `${rawTrip.legs.length}` : '—' },
           ].map(({ label, value }) => (
             <div key={label}>
               <div
@@ -210,30 +213,59 @@ export default function TripPageContent({ trip: rawTrip }: { trip: Trip }) {
           />
         </div>
 
-        {/* Legs */}
-        <LegList trip={rawTrip} />
-
-        {rawTrip.legs.length === 0 && isUpcoming && (
-          <div
-            style={{
-              textAlign: 'center',
-              padding: '4rem',
-              border: '1px dashed rgba(200,169,110,0.4)',
-              borderRadius: '2px',
-            }}
-          >
-            <p
+        {/* Entries (flat trip) or Legs (multi-leg trip) */}
+        {rawTrip.flat ? (
+          <div>
+            <div
               style={{
-                fontFamily: 'var(--font-playfair)',
-                fontSize: '1.1rem',
-                fontStyle: 'italic',
-                color: 'var(--muted)',
-                margin: 0,
+                fontFamily: 'var(--font-dm-mono)',
+                fontSize: '0.65rem',
+                color: 'var(--gold-500)',
+                letterSpacing: '0.2em',
+                textTransform: 'uppercase',
+                marginBottom: '2.5rem',
               }}
             >
-              {t('trip.emptyLog')}
-            </p>
+              {t('leg.logEntries')}
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+              {rawTrip.legs[0]?.entries.map((rawEntry, i) => (
+                <LocalizedEntryCard
+                  key={rawEntry.slug}
+                  rawEntry={rawEntry}
+                  index={i}
+                  href={`/trips/${rawTrip.slug}/entries/${rawEntry.slug}`}
+                  readLabel={t('leg.readEntry')}
+                />
+              ))}
+            </div>
           </div>
+        ) : (
+          <>
+            <LegList trip={rawTrip} />
+            {rawTrip.legs.length === 0 && isUpcoming && (
+              <div
+                style={{
+                  textAlign: 'center',
+                  padding: '4rem',
+                  border: '1px dashed rgba(200,169,110,0.4)',
+                  borderRadius: '2px',
+                }}
+              >
+                <p
+                  style={{
+                    fontFamily: 'var(--font-playfair)',
+                    fontSize: '1.1rem',
+                    fontStyle: 'italic',
+                    color: 'var(--muted)',
+                    margin: 0,
+                  }}
+                >
+                  {t('trip.emptyLog')}
+                </p>
+              </div>
+            )}
+          </>
         )}
       </div>
     </>

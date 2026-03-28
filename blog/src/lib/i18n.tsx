@@ -48,7 +48,7 @@ type UIKey =
   | 'trip.upcoming' | 'trip.emptyLog' | 'trip.readLog'
   | 'leg.logEntries' | 'leg.departed' | 'leg.arrived' | 'leg.entries'
   | 'leg.prevLeg' | 'leg.nextLeg' | 'leg.emptyLog' | 'leg.readEntry'
-  | 'entry.backToLeg' | 'entry.prevEntry' | 'entry.nextEntry'
+  | 'entry.backToLeg' | 'entry.backToTrip' | 'entry.prevEntry' | 'entry.nextEntry'
   | 'map.theChart' | 'map.whereArtemisa' | 'map.allRoutes'
   | 'about.retired' | 'about.tagline'
   | 'footer.tagline' | 'footer.navigate' | 'footer.allTrips'
@@ -104,6 +104,7 @@ const ui: Record<UIKey, { en: string; es: string }> = {
   'leg.readEntry':         { en: 'Read entry →',            es: 'Leer entrada →' },
 
   'entry.backToLeg':       { en: '← Back to log',           es: '← Volver al diario' },
+  'entry.backToTrip':      { en: '← Back to trip',          es: '← Volver al viaje' },
   'entry.prevEntry':       { en: '← Previous entry',        es: '← Entrada anterior' },
   'entry.nextEntry':       { en: 'Next entry →',            es: 'Siguiente entrada →' },
 

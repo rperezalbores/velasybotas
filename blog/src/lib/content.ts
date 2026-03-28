@@ -7,8 +7,7 @@ const CONTENT_ROOT = path.join(process.cwd(), '../content/trips')
 
 // ── Entries ────────────────────────────────────────────────────────────────
 
-export function loadLegEntries(tripSlug: string, legSlug: string): Entry[] {
-  const entriesDir = path.join(CONTENT_ROOT, tripSlug, legSlug, 'entries')
+function loadEntriesFromDir(entriesDir: string): Entry[] {
   if (!fs.existsSync(entriesDir)) return []
 
   return fs
@@ -49,6 +48,10 @@ export function loadLegEntries(tripSlug: string, legSlug: string): Entry[] {
         videos,
       } satisfies Entry
     })
+}
+
+export function loadLegEntries(tripSlug: string, legSlug: string): Entry[] {
+  return loadEntriesFromDir(path.join(CONTENT_ROOT, tripSlug, legSlug, 'entries'))
 }
 
 // ── Legs ───────────────────────────────────────────────────────────────────
@@ -97,15 +100,38 @@ export function loadAllTrips(): Trip[] {
       const data = JSON.parse(fs.readFileSync(tripJsonPath, 'utf-8'))
 
       const tripDir = path.join(CONTENT_ROOT, tripSlug)
-      const legs: Leg[] = fs
-        .readdirSync(tripDir, { withFileTypes: true })
-        .filter(d => d.isDirectory())
-        .map(d => d.name)
-        .sort()
-        .flatMap(legSlug => {
-          const leg = loadLeg(tripSlug, legSlug)
-          return leg ? [leg] : []
-        })
+      const flatEntriesDir = path.join(tripDir, 'entries')
+      const isFlat = fs.existsSync(flatEntriesDir) && fs.lstatSync(flatEntriesDir).isDirectory()
+
+      let legs: Leg[]
+      if (isFlat) {
+        // Flat trip: entries live directly in trip/entries/ — create a synthetic leg
+        legs = [{
+          slug:       'entries',
+          title:      data.title ?? '',
+          titleEs:    data.titleEs,
+          dateStart:  data.dateStart ?? '',
+          dateEnd:    data.dateEnd ?? '',
+          from:       '',
+          to:         '',
+          fromCoords: { lat: 0, lng: 0 },
+          toCoords:   { lat: 0, lng: 0 },
+          summary:    data.summary ?? '',
+          summaryEs:  data.summaryEs,
+          coverImage: data.coverImage ?? '',
+          entries:    loadEntriesFromDir(flatEntriesDir),
+        }]
+      } else {
+        legs = fs
+          .readdirSync(tripDir, { withFileTypes: true })
+          .filter(d => d.isDirectory())
+          .map(d => d.name)
+          .sort()
+          .flatMap(legSlug => {
+            const leg = loadLeg(tripSlug, legSlug)
+            return leg ? [leg] : []
+          })
+      }
 
       return [{
         slug:       data.slug ?? tripSlug,
@@ -122,6 +148,7 @@ export function loadAllTrips(): Trip[] {
         route:      data.route ?? null,
         tags:       data.tags ?? [],
         featured:   data.featured ?? false,
+        flat:       isFlat,
         legs,
       }] satisfies Trip[]
     })

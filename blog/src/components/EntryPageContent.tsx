@@ -37,7 +37,11 @@ export default function EntryPageContent({
   const prevEntry = entryIndex > 0 ? rawLeg.entries[entryIndex - 1] : null
   const nextEntry = entryIndex < rawLeg.entries.length - 1 ? rawLeg.entries[entryIndex + 1] : null
 
-  const entryId = `${rawTrip.slug}/${rawLeg.slug}/${rawEntry.slug}`
+  const entryId = rawTrip.flat
+    ? `${rawTrip.slug}/${rawEntry.slug}`
+    : `${rawTrip.slug}/${rawLeg.slug}/${rawEntry.slug}`
+
+  const backHref = rawTrip.flat ? `/trips/${rawTrip.slug}` : `/trips/${rawTrip.slug}/${rawLeg.slug}`
 
   return (
     <div style={{ maxWidth: '860px', margin: '0 auto', padding: 'clamp(2rem, 5vw, 4rem) clamp(1rem, 4vw, 2rem) clamp(3rem, 6vw, 6rem)' }}>
@@ -45,14 +49,14 @@ export default function EntryPageContent({
         items={[
           { label: t('nav.trips'), href: '/trips' },
           { label: localizedTrip.title, href: `/trips/${rawTrip.slug}` },
-          { label: localizedLeg.title, href: `/trips/${rawTrip.slug}/${rawLeg.slug}` },
+          ...(rawTrip.flat ? [] : [{ label: localizedLeg.title, href: `/trips/${rawTrip.slug}/${rawLeg.slug}` }]),
           { label: entry.title },
         ]}
       />
 
-      {/* Back to leg link */}
+      {/* Back to leg / trip link */}
       <a
-        href={`/trips/${rawTrip.slug}/${rawLeg.slug}`}
+        href={backHref}
         style={{
           display: 'inline-block',
           fontFamily: 'var(--font-dm-mono)',
@@ -64,7 +68,7 @@ export default function EntryPageContent({
           marginBottom: '2.5rem',
         }}
       >
-        {t('entry.backToLeg')}
+        {rawTrip.flat ? t('entry.backToTrip') : t('entry.backToLeg')}
       </a>
 
       {/* Entry header */}
@@ -229,7 +233,7 @@ export default function EntryPageContent({
       >
         {prevEntry ? (
           <a
-            href={`/trips/${rawTrip.slug}/${rawLeg.slug}/${prevEntry.slug}`}
+            href={rawTrip.flat ? `/trips/${rawTrip.slug}/entries/${prevEntry.slug}` : `/trips/${rawTrip.slug}/${rawLeg.slug}/${prevEntry.slug}`}
             style={{
               textDecoration: 'none',
               padding: '1.25rem',
@@ -247,7 +251,7 @@ export default function EntryPageContent({
           </a>
         ) : (
           <a
-            href={`/trips/${rawTrip.slug}/${rawLeg.slug}`}
+            href={backHref}
             style={{
               textDecoration: 'none',
               padding: '1.25rem',
@@ -257,17 +261,17 @@ export default function EntryPageContent({
             }}
           >
             <div style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '0.65rem', color: 'var(--muted)', letterSpacing: '0.1em', marginBottom: '4px' }}>
-              {t('entry.backToLeg')}
+              {rawTrip.flat ? t('entry.backToTrip') : t('entry.backToLeg')}
             </div>
             <div style={{ fontFamily: 'var(--font-playfair)', fontSize: '1rem', fontWeight: 600, color: 'var(--navy-900)' }}>
-              {localizedLeg.title}
+              {rawTrip.flat ? localizedTrip.title : localizedLeg.title}
             </div>
           </a>
         )}
 
         {nextEntry && (
           <a
-            href={`/trips/${rawTrip.slug}/${rawLeg.slug}/${nextEntry.slug}`}
+            href={rawTrip.flat ? `/trips/${rawTrip.slug}/entries/${nextEntry.slug}` : `/trips/${rawTrip.slug}/${rawLeg.slug}/${nextEntry.slug}`}
             style={{
               textDecoration: 'none',
               padding: '1.25rem',
