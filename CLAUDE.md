@@ -144,7 +144,36 @@ Ricardo sends photos and text highlights via Telegram while traveling. Claude re
 ## Media Rendering Rules
 
 - **Photos and videos must never have a black background container.** Portrait media (taller than wide) displayed in a wide container will show black bands if the container has `background: '#000'` or inherits a dark background. Always use `textAlign: 'center'` on the container with no background, and `maxWidth: '100%'`, `maxHeight`, `width: 'auto'`, `display: 'inline-block'` on the media element. This lets portrait content display at natural proportions without letterboxing.
-- **Static file serving:** Photos live in `content/trips/[trip]/[leg]/photos/`. A symlink `blog/public/content → ../../content` makes them accessible at `/content/trips/[trip]/[leg]/photos/filename`. Never use a flat `public/photos/` folder — keep photos with their leg.
+- **Media is served from Cloudflare R2 CDN.** Photos and videos live in `content/trips/[trip]/[leg]/photos/` locally but are referenced via CDN URLs (`https://pub-3b2faf4e0ab04a05907f60ff781623b7.r2.dev/trips/...`). The `blog/public/content` symlink no longer exists. Never use local `/content/trips/` paths in MDX or JSON files.
+
+### Video Compression
+
+Before uploading videos to R2, compress with ffmpeg. Raw iPhone/GoPro files are 100–200MB — target is under 20MB.
+
+```bash
+# Standard (H.264, mp4, no audio issues):
+ffmpeg -i input.mp4 \
+  -vf "scale=-2:720" \
+  -c:v libx264 -crf 28 -preset fast \
+  -pix_fmt yuv420p -an \
+  -movflags +faststart \
+  -y output.mp4
+
+# HEVC/10-bit source (iPhone portrait videos — requires -pix_fmt yuv420p):
+ffmpeg -i input.MP4 \
+  -vf "scale=-2:720" \
+  -c:v libx264 -crf 28 -preset fast \
+  -pix_fmt yuv420p -an \
+  -movflags +faststart \
+  -map 0:v:0 \
+  -y output.MP4
+```
+
+- Use `scale=-2:720` for portrait videos (iPhones), `scale=1280:-2` for landscape.
+- `-pix_fmt yuv420p` is required for HEVC 10-bit sources (hvc1/hevc codec) — omitting it causes "Generic error in external library".
+- `-an` strips audio (blog videos are silent clips; keeps file size minimal).
+- `-movflags +faststart` moves moov atom to front for instant browser playback.
+- R2 is case-sensitive — filename in MDX must exactly match filename in R2 (e.g. `IMG_4129.MP4` not `img_4129.mp4`).
 
 ## Bilingual Architecture
 
@@ -228,16 +257,55 @@ RLS policies: public SELECT on approved=true, public INSERT.
 ### Moderation
 Currently auto-approved (`approved = true` on insert). To enable moderation: change the INSERT policy to `with check (false)` and flip `approved` manually in the Supabase dashboard.
 
-## Deployment (Vercel)
+## Deployment Architecture
 
-```bash
-# Push to GitHub → Vercel auto-deploys
-# Required env vars in Vercel dashboard:
-NEXT_PUBLIC_MAPBOX_TOKEN
-NEXT_PUBLIC_SUPABASE_URL
-NEXT_PUBLIC_SUPABASE_ANON_KEY
-SUPABASE_SERVICE_KEY
+### Infrastructure overview
+
 ```
+GitHub (rperezalbores/velasybotas)
+  └─→ Vercel (auto-deploy on push to main)
+        └─→ velasybotas.vercel.app
+              ├── Next.js app (blog/)
+              ├── Supabase (comments DB)
+              │     └── https://itouwumtfbbflzrfkcqk.supabase.co
+              └── Cloudflare R2 (photos + videos CDN)
+                    └── pub-3b2faf4e0ab04a05907f60ff781623b7.r2.dev
+```
+
+### Vercel
+- **Repo:** `rperezalbores/velasybotas` — root directory set to `blog/`
+- **Auto-deploy:** every push to `main` triggers a new production deployment
+- **Env vars** (set in Vercel → Project Settings → Environment Variables):
+
+| Variable | Value |
+|----------|-------|
+| `NEXT_PUBLIC_MAPBOX_TOKEN` | Mapbox public token (account: rperezalbores) |
+| `NEXT_PUBLIC_SUPABASE_URL` | `https://itouwumtfbbflzrfkcqk.supabase.co` |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase publishable key |
+| `SUPABASE_SERVICE_KEY` | Supabase secret key (server-side only) |
+
+### Cloudflare R2
+- **Bucket:** `velasybotas`
+- **Public CDN URL:** `https://pub-3b2faf4e0ab04a05907f60ff781623b7.r2.dev`
+- **S3 endpoint:** `https://a6ae56351c8726423eaef4f41d51819c.r2.cloudflarestorage.com`
+- **Folder structure:** `trips/[trip-slug]/[leg-slug]/photos/filename`
+- Upload with AWS CLI (S3-compatible):
+```bash
+AWS_ACCESS_KEY_ID=<key> AWS_SECRET_ACCESS_KEY=<secret> \
+  aws s3 sync content/trips/ s3://velasybotas/trips/ \
+  --endpoint-url https://a6ae56351c8726423eaef4f41d51819c.r2.cloudflarestorage.com \
+  --exclude "*.mdx" --exclude "*.json"
+```
+
+### Supabase (comments)
+- **Project URL:** `https://itouwumtfbbflzrfkcqk.supabase.co`
+- **Schema:** defined in `supabase-schema.sql` — run once in Supabase SQL Editor
+- **RLS:** public SELECT (approved=true), public INSERT
+
+### GitHub
+- **Repo:** `https://github.com/rperezalbores/velasybotas`
+- **Branch:** `main` — direct commits, no PR workflow
+- Content (MDX/JSON) and code live together; photos/videos are NOT committed (they go to R2)
 
 ## Run
 
@@ -279,6 +347,6 @@ Column-level `CHECK` constraints also enforce length and format limits directly 
 
 ### Dependency hygiene
 - Next.js is pinned to `14.2.35` (latest stable 14.x, patches multiple CVEs vs 14.2.29)
-- `next-mdx-remote@5` has a known SSR code-execution CVE for *untrusted* MDX (GHSA-g4xw-jxrg-5f6m). MDX content here is author-controlled so risk is low, but upgrade to v6 when possible (breaking change — check API compatibility first)
+- `next-mdx-remote` was removed — MDX is parsed manually via `gray-matter`; the package was unused and had a CVE that Vercel blocked at deploy time
 - ESLint-related vulnerabilities (`glob`, `picomatch`) are dev-only and do not affect the deployed app
 - Run `npm audit` periodically and update Next.js to the latest 14.2.x patch
