@@ -6,7 +6,7 @@ import Breadcrumb from '@/components/Breadcrumb'
 import Comments from '@/components/Comments'
 import { Trip } from '@/types'
 import { renderInline } from '@/lib/renderText'
-import { useT } from '@/lib/i18n'
+import { useT, useLang } from '@/lib/i18n'
 import { useLocalizedTrip, useLocalizedLeg, useLocalizedEntry } from '@/lib/useLocalizedTrip'
 
 function formatDate(d: string) {
@@ -28,6 +28,7 @@ export default function EntryPageContent({
   entryIndex: number
 }) {
   const t = useT()
+  const { lang } = useLang()
   const localizedTrip = useLocalizedTrip(rawTrip)
   const rawLeg = rawTrip.legs[legIndex]
   const localizedLeg = useLocalizedLeg(rawLeg)
@@ -101,6 +102,19 @@ export default function EntryPageContent({
       {/* Entry content */}
       <div className="prose-entry">
         {(() => {
+          const captionStyle: React.CSSProperties = {
+            fontFamily: 'var(--font-dm-mono)',
+            fontSize: '0.65rem',
+            color: 'var(--navy-400)',
+            letterSpacing: '0.05em',
+            textAlign: 'center',
+            marginTop: '0.5rem',
+            fontStyle: 'italic',
+          }
+          const getCaption = (idx: number) => {
+            const arr = lang === 'es' ? rawEntry.captionsEs : rawEntry.captions
+            return arr?.[idx] || ''
+          }
           const blocks = entry.content.split('\n\n')
           const nodes: React.ReactNode[] = []
           let i = 0
@@ -111,12 +125,19 @@ export default function EntryPageContent({
             const floatMatch = block.match(/^\[PHOTO(LEFT|RIGHT):(\d+)\]$/)
             if (floatMatch) {
               const side = floatMatch[1] === 'LEFT' ? 'left' : 'right'
-              const src = rawEntry.images[parseInt(floatMatch[2])]
+              const idx = parseInt(floatMatch[2])
+              const src = rawEntry.images[idx]
+              const caption = getCaption(idx)
               const nextBlock = blocks[i + 1]?.trim()
               const nextIsMedia = !!nextBlock?.match(/^\[(PHOTO|VIDEO)/)
               const pairedText = nextBlock && !nextIsMedia ? nextBlock : undefined
               if (src) {
-                const img = <Image src={src} alt={entry.title} width={900} height={1350} className="media-float-item" sizes="(max-width: 600px) 100vw, 42vw" style={{ height: 'auto', display: 'block', borderRadius: '2px' }} />
+                const img = (
+                  <div style={{ display: 'flex', flexDirection: 'column' }}>
+                    <Image src={src} alt={caption || entry.title} width={900} height={1350} className="media-float-item" sizes="(max-width: 600px) 100vw, 42vw" style={{ height: 'auto', display: 'block', borderRadius: '2px' }} />
+                    {caption && <p style={captionStyle}>{caption}</p>}
+                  </div>
+                )
                 const txt = pairedText ? <div style={{ flex: 1 }}><p style={{ margin: 0 }}>{renderInline(pairedText)}</p></div> : null
                 nodes.push(
                   <div key={i} className="media-float" style={{ flexDirection: side === 'left' ? 'row' : 'row-reverse' }}>
@@ -131,12 +152,16 @@ export default function EntryPageContent({
             // [PHOTOS:n,m] — side by side grid
             const photosMatch = block.match(/^\[PHOTOS:(\d+),(\d+)\]$/)
             if (photosMatch) {
-              const src1 = rawEntry.images[parseInt(photosMatch[1])]
-              const src2 = rawEntry.images[parseInt(photosMatch[2])]
+              const idx1 = parseInt(photosMatch[1])
+              const idx2 = parseInt(photosMatch[2])
+              const src1 = rawEntry.images[idx1]
+              const src2 = rawEntry.images[idx2]
+              const cap1 = getCaption(idx1)
+              const cap2 = getCaption(idx2)
               if (src1 || src2) nodes.push(
                 <div key={i} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.5rem', margin: '2rem 0' }}>
-                  {src1 && <Image src={src1} alt={entry.title} width={900} height={600} sizes="(max-width: 860px) 50vw, 430px" style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '2px' }} />}
-                  {src2 && <Image src={src2} alt={entry.title} width={900} height={600} sizes="(max-width: 860px) 50vw, 430px" style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '2px' }} />}
+                  {src1 && <div>{<Image src={src1} alt={cap1 || entry.title} width={900} height={600} sizes="(max-width: 860px) 50vw, 430px" style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '2px' }} />}{cap1 && <p style={captionStyle}>{cap1}</p>}</div>}
+                  {src2 && <div>{<Image src={src2} alt={cap2 || entry.title} width={900} height={600} sizes="(max-width: 860px) 50vw, 430px" style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '2px' }} />}{cap2 && <p style={captionStyle}>{cap2}</p>}</div>}
                 </div>
               )
               i++; continue
@@ -145,10 +170,13 @@ export default function EntryPageContent({
             // [PHOTO] / [PHOTO:n] — full width
             const photoMatch = block.match(/^\[PHOTO(?::(\d+))?\]$/)
             if (photoMatch) {
-              const src = rawEntry.images[photoMatch[1] ? parseInt(photoMatch[1]) : 0]
+              const idx = photoMatch[1] ? parseInt(photoMatch[1]) : 0
+              const src = rawEntry.images[idx]
+              const caption = getCaption(idx)
               if (src) nodes.push(
                 <div key={i} style={{ width: '100%', margin: '2rem 0', textAlign: 'center', background: 'transparent' }}>
-                  <Image src={src} alt={entry.title} width={1800} height={1200} sizes="(max-width: 860px) 100vw, 860px" style={{ maxWidth: '100%', maxHeight: '572px', width: 'auto', height: 'auto', display: 'inline-block' }} />
+                  <Image src={src} alt={caption || entry.title} width={1800} height={1200} sizes="(max-width: 860px) 100vw, 860px" style={{ maxWidth: '100%', maxHeight: '572px', width: 'auto', height: 'auto', display: 'inline-block' }} />
+                  {caption && <p style={{ ...captionStyle, marginTop: '0.5rem' }}>{caption}</p>}
                 </div>
               )
               i++; continue

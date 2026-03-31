@@ -26,6 +26,8 @@ function loadEntriesFromDir(entriesDir: string): Entry[] {
       const contentEs = esRaw.replace(/<\/ES>[\s\S]*$/, '').trim() || undefined
 
       const images: string[] = (data.photos ?? []).map((p: { url: string }) => p.url)
+      const captions: string[] = (data.photos ?? []).map((p: { caption?: string }) => p.caption ?? '')
+      const captionsEs: string[] = (data.photos ?? []).map((p: { captionEs?: string }) => p.captionEs ?? '')
       const videos: string[] = (data.videos ?? []).map((v: { url: string }) => v.url)
 
       const loc = data.location
@@ -45,6 +47,8 @@ function loadEntriesFromDir(entriesDir: string): Entry[] {
         content: enContent,
         contentEs,
         images,
+        captions,
+        captionsEs,
         videos,
       } satisfies Entry
     })

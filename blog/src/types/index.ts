@@ -18,6 +18,8 @@ export interface Entry {
   content: string
   contentEs?: string
   images: string[]
+  captions: string[]
+  captionsEs: string[]
   video?: string
   videos?: string[]
 }
