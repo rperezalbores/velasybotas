@@ -177,7 +177,7 @@ export default function EntryPageContent({
                 <div key={i} style={{ width: '100%', margin: '2rem 0', textAlign: 'center', background: 'transparent' }}>
                   <div style={{ display: 'inline-block', maxWidth: '100%' }}>
                     <Image src={src} alt={caption || entry.title} width={1800} height={1200} sizes="(max-width: 860px) 100vw, 860px" style={{ maxWidth: '100%', maxHeight: '572px', width: 'auto', height: 'auto', display: 'block' }} />
-                    {caption && <p style={{ ...captionStyle, marginTop: '0.5rem' }}>{caption}</p>}
+                    {caption && <p style={{ ...captionStyle, width: 0, minWidth: '100%', marginTop: '0.5rem' }}>{caption}</p>}
                   </div>
                 </div>
               )
