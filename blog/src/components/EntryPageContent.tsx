@@ -133,8 +133,8 @@ export default function EntryPageContent({
               const pairedText = nextBlock && !nextIsMedia ? nextBlock : undefined
               if (src) {
                 const img = (
-                  <div style={{ display: 'flex', flexDirection: 'column' }}>
-                    <Image src={src} alt={caption || entry.title} width={900} height={1350} className="media-float-item" sizes="(max-width: 600px) 100vw, 42vw" style={{ height: 'auto', display: 'block', borderRadius: '2px' }} />
+                  <div className="media-float-item" style={{ display: 'flex', flexDirection: 'column' }}>
+                    <Image src={src} alt={caption || entry.title} width={900} height={1350} sizes="(max-width: 600px) 100vw, 42vw" style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '2px' }} />
                     {caption && <p style={captionStyle}>{caption}</p>}
                   </div>
                 )
