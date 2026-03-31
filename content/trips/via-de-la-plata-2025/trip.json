@@ -50,7 +50,6 @@
     { "km": 510,  "elev": 750 },
     { "km": 516,  "elev": 950,  "label": "Pto. de Béjar — 950m" },
     { "km": 520,  "elev": 820,  "label": "La Calzada de Béjar", "sleep": true },
-    { "km": 524,  "elev": 950,  "label": "Béjar" },
     { "km": 540,  "elev": 850 },
     { "km": 560,  "elev": 820 },
     { "km": 580,  "elev": 810 },
