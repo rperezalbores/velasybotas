@@ -58,6 +58,7 @@ type UIKey =
   | 'comments.message' | 'comments.placeholder' | 'comments.submit'
   | 'comments.submitting' | 'comments.thanks' | 'comments.privacy'
   | 'comments.count'
+  | 'trip.elevationProfile'
 
 const ui: Record<UIKey, { en: string; es: string }> = {
   'nav.trips':             { en: 'Trips',       es: 'Viajes' },
@@ -137,6 +138,8 @@ const ui: Record<UIKey, { en: string; es: string }> = {
   'comments.submitting':   { en: 'Posting…',             es: 'Publicando…' },
   'comments.thanks':       { en: 'Comment posted — thank you!', es: '¡Comentario publicado — gracias!' },
   'comments.privacy':      { en: 'No account needed. Email, if provided, is only used for your avatar.', es: 'Sin cuenta necesaria. El email, si lo proporcionas, solo se usa para tu avatar.' },
+
+  'trip.elevationProfile': { en: 'Elevation Profile',   es: 'Perfil de Altitud' },
 }
 
 export function useT() {

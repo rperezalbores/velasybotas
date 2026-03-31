@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import Breadcrumb from '@/components/Breadcrumb'
 import RouteMap from '@/components/Map/RouteMap'
+import ElevationProfile from '@/components/ElevationProfile'
 import LegList from '@/components/LegList'
 import LocalizedEntryCard from '@/components/LocalizedEntryCard'
 import { Trip } from '@/types'
@@ -206,12 +207,26 @@ export default function TripPageContent({ trip: rawTrip }: { trip: Trip }) {
             </div>
           </div>
 
-          <RouteMap
-            route={rawTrip.route}
-            markers={allMarkers}
-            height="320px"
-          />
+          {rawTrip.staticMapImage ? (
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <img
+                src={rawTrip.staticMapImage}
+                alt="Route map"
+                style={{ maxWidth: '100%', width: 'auto', height: 'auto' }}
+              />
+            </div>
+          ) : (
+            <RouteMap
+              route={rawTrip.route}
+              markers={allMarkers}
+              height="320px"
+            />
+          )}
         </div>
+
+        {rawTrip.elevationProfile && (
+          <ElevationProfile data={rawTrip.elevationProfile} />
+        )}
 
         {/* Entries (flat trip) or Legs (multi-leg trip) */}
         {rawTrip.flat ? (

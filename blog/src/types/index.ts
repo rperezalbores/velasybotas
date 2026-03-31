@@ -56,6 +56,8 @@ export interface Trip {
   legs: Leg[]
   featured?: boolean
   flat?: boolean
+  elevationProfile?: Array<{ km: number; elev: number; label?: string; sleep?: boolean }>
+  staticMapImage?: string
 }
 
 export interface GeoJSONLineString {

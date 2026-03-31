@@ -145,10 +145,12 @@ export function loadAllTrips(): Trip[] {
         summary:    data.summary ?? '',
         summaryEs:  data.summaryEs,
         coverImage: data.coverImage ?? '',
-        route:      data.route ?? null,
-        tags:       data.tags ?? [],
-        featured:   data.featured ?? false,
-        flat:       isFlat,
+        route:            data.route ?? null,
+        tags:             data.tags ?? [],
+        featured:         data.featured ?? false,
+        flat:             isFlat,
+        elevationProfile: data.elevationProfile,
+        staticMapImage:   data.staticMapImage,
         legs,
       }] satisfies Trip[]
     })
