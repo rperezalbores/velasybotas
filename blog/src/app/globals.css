@@ -241,7 +241,7 @@ body::before {
 .media-float {
   display: flex;
   gap: 1.5rem;
-  align-items: center;
+  align-items: flex-start;
   margin: 2rem 0;
 }
 .media-float-item {
