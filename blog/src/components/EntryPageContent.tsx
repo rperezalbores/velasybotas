@@ -175,8 +175,10 @@ export default function EntryPageContent({
               const caption = getCaption(idx)
               if (src) nodes.push(
                 <div key={i} style={{ width: '100%', margin: '2rem 0', textAlign: 'center', background: 'transparent' }}>
-                  <Image src={src} alt={caption || entry.title} width={1800} height={1200} sizes="(max-width: 860px) 100vw, 860px" style={{ maxWidth: '100%', maxHeight: '572px', width: 'auto', height: 'auto', display: 'inline-block' }} />
-                  {caption && <p style={{ ...captionStyle, marginTop: '0.5rem' }}>{caption}</p>}
+                  <div style={{ display: 'inline-block', maxWidth: '100%' }}>
+                    <Image src={src} alt={caption || entry.title} width={1800} height={1200} sizes="(max-width: 860px) 100vw, 860px" style={{ maxWidth: '100%', maxHeight: '572px', width: 'auto', height: 'auto', display: 'block' }} />
+                    {caption && <p style={{ ...captionStyle, marginTop: '0.5rem' }}>{caption}</p>}
+                  </div>
                 </div>
               )
               i++; continue
