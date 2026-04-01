@@ -219,6 +219,43 @@ export default function EntryPageContent({
               i++; continue
             }
 
+            // Markdown table (block where every non-empty line starts with |)
+            const tableLines = block.split('\n').filter(l => l.trim())
+            if (tableLines.length >= 2 && tableLines.every(l => l.trim().startsWith('|'))) {
+              const parseRow = (line: string) =>
+                line.split('|').slice(1, -1).map(cell => cell.trim())
+              const isSeparator = (line: string) => /^\|[\s\-|]+\|$/.test(line.trim())
+              const headers = parseRow(tableLines[0])
+              const bodyLines = tableLines.slice(1).filter(l => !isSeparator(l))
+              nodes.push(
+                <div key={i} style={{ overflowX: 'auto', margin: '1.5rem 0' }}>
+                  <table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: 'var(--font-dm-mono)', fontSize: '0.72rem' }}>
+                    <thead>
+                      <tr>
+                        {headers.map((h, j) => (
+                          <th key={j} style={{ textAlign: 'left', padding: '8px 12px', borderBottom: '2px solid var(--navy-900)', color: 'var(--navy-900)', letterSpacing: '0.07em', textTransform: 'uppercase', whiteSpace: 'nowrap' }}>
+                            {renderInline(h)}
+                          </th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {bodyLines.map((line, j) => (
+                        <tr key={j} style={{ borderBottom: '1px solid rgba(0,0,0,0.07)', background: j % 2 === 0 ? 'transparent' : 'rgba(0,0,0,0.02)' }}>
+                          {parseRow(line).map((cell, k) => (
+                            <td key={k} style={{ padding: '8px 12px', color: 'var(--navy-700)', verticalAlign: 'top' }}>
+                              {renderInline(cell)}
+                            </td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )
+              i++; continue
+            }
+
             // plain text
             if (block) nodes.push(<p key={i}>{renderInline(block)}</p>)
             i++
