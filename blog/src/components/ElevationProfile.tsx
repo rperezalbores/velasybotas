@@ -23,14 +23,9 @@ const W = 1000
 const H = 300
 const PLOT_W = W - PAD.left - PAD.right
 const PLOT_H = H - PAD.top - PAD.bottom
-const MAX_ELEV = 1500
 
 function toSvgX(km: number, maxKm: number) {
   return PAD.left + (km / maxKm) * PLOT_W
-}
-
-function toSvgY(elev: number) {
-  return PAD.top + PLOT_H - (elev / MAX_ELEV) * PLOT_H
 }
 
 export default function ElevationProfile({ data }: { data: ElevationPoint[] }) {
@@ -38,21 +33,25 @@ export default function ElevationProfile({ data }: { data: ElevationPoint[] }) {
   const [tooltip, setTooltip] = useState<TooltipState | null>(null)
 
   const maxKm = data[data.length - 1].km
+  const peakElev = Math.max(...data.map(d => d.elev))
+  const maxElev = peakElev <= 800 ? 1000 : peakElev <= 1200 ? 1500 : 2000
+  const yTicks = maxElev === 1000 ? [0, 250, 500, 750, 1000] : maxElev === 1500 ? [0, 500, 1000, 1500] : [0, 500, 1000, 1500, 2000]
 
-  const points = data.map(d => [toSvgX(d.km, maxKm), toSvgY(d.elev)] as [number, number])
+  const toY = (elev: number) => PAD.top + PLOT_H - (elev / maxElev) * PLOT_H
+
+  const points = data.map(d => [toSvgX(d.km, maxKm), toY(d.elev)] as [number, number])
 
   const areaPath =
-    `M ${points[0][0]},${toSvgY(0)} ` +
+    `M ${points[0][0]},${toY(0)} ` +
     points.map(([x, y]) => `L ${x},${y}`).join(' ') +
-    ` L ${points[points.length - 1][0]},${toSvgY(0)} Z`
+    ` L ${points[points.length - 1][0]},${toY(0)} Z`
 
   const linePath =
     `M ${points[0][0]},${points[0][1]} ` +
     points.slice(1).map(([x, y]) => `L ${x},${y}`).join(' ')
 
-  const yTicks = [0, 500, 1000, 1500]
   const xLabels = data.filter(d => d.label)
-  const passes = data.filter(d => d.label && d.elev >= 1000)
+  const passes = data.filter(d => d.label && d.elev >= maxElev * 0.7)
 
   const handleMouseMove = useCallback((e: React.MouseEvent<SVGSVGElement>) => {
     const rect = e.currentTarget.getBoundingClientRect()
@@ -72,7 +71,7 @@ export default function ElevationProfile({ data }: { data: ElevationPoint[] }) {
 
     setTooltip({
       x: toSvgX(nearest.km, maxKm),
-      y: toSvgY(nearest.elev),
+      y: toY(nearest.elev),
       km: nearest.km,
       elev: nearest.elev,
       label: nearest.label,
@@ -112,16 +111,16 @@ export default function ElevationProfile({ data }: { data: ElevationPoint[] }) {
           <g key={elev}>
             <line
               x1={PAD.left}
-              y1={toSvgY(elev)}
+              y1={toY(elev)}
               x2={W - PAD.right}
-              y2={toSvgY(elev)}
+              y2={toY(elev)}
               stroke="#e5e0d8"
               strokeWidth="0.8"
               strokeDasharray={elev === 0 ? 'none' : '4 4'}
             />
             <text
               x={PAD.left - 6}
-              y={toSvgY(elev) + 4}
+              y={toY(elev) + 4}
               textAnchor="end"
               fontSize="11"
               fontFamily="var(--font-dm-mono)"
@@ -143,7 +142,7 @@ export default function ElevationProfile({ data }: { data: ElevationPoint[] }) {
           <circle
             key={d.km}
             cx={toSvgX(d.km, maxKm)}
-            cy={toSvgY(d.elev)}
+            cy={toY(d.elev)}
             r="5"
             fill="#c0392b"
             stroke="white"
@@ -156,16 +155,16 @@ export default function ElevationProfile({ data }: { data: ElevationPoint[] }) {
           <g key={p.km}>
             <line
               x1={toSvgX(p.km, maxKm)}
-              y1={toSvgY(p.elev) - 6}
+              y1={toY(p.elev) - 6}
               x2={toSvgX(p.km, maxKm)}
-              y2={toSvgY(p.elev) - 34}
+              y2={toY(p.elev) - 34}
               stroke="#c9a84c"
               strokeWidth="1"
               strokeDasharray="3 3"
             />
             <text
               x={toSvgX(p.km, maxKm)}
-              y={toSvgY(p.elev) - 38}
+              y={toY(p.elev) - 38}
               textAnchor="middle"
               fontSize="11"
               fontFamily="var(--font-dm-mono)"
@@ -218,7 +217,7 @@ export default function ElevationProfile({ data }: { data: ElevationPoint[] }) {
               x1={tooltip.x}
               y1={PAD.top}
               x2={tooltip.x}
-              y2={toSvgY(0)}
+              y2={toY(0)}
               stroke="#c9a84c"
               strokeWidth="1"
               strokeDasharray="4 3"
