@@ -12,5 +12,6 @@
   "coverImage": "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=1600&q=80",
   "tags": ["camino", "spain", "hiking", "basque country"],
   "route": null,
+  "staticMapImage": "https://pub-3b2faf4e0ab04a05907f60ff781623b7.r2.dev/trips/camino-del-norte-2026/camino_del_norte_map.png",
   "featured": false
 }
