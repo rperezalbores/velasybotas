@@ -38,7 +38,7 @@ export function useLocalized(en: string, es?: string): string {
 // ─── UI Translations ────────────────────────────────────────────────────────
 
 type UIKey =
-  | 'nav.trips' | 'nav.sailing' | 'nav.caminos' | 'nav.map' | 'nav.about'
+  | 'nav.trips' | 'nav.sailing' | 'nav.caminos' | 'nav.cooking' | 'nav.map' | 'nav.about'
   | 'home.latest' | 'home.readLog' | 'home.allTrips' | 'home.everyVoyage' | 'home.theLog'
   | 'home.retired' | 'home.adventureStarted' | 'home.aboutRicardo'
   | 'trips.theLog' | 'trips.everyVoyage' | 'trips.filter.all' | 'trips.filter.sailing'
@@ -64,6 +64,7 @@ const ui: Record<UIKey, { en: string; es: string }> = {
   'nav.trips':             { en: 'Trips',       es: 'Viajes' },
   'nav.sailing':           { en: 'Sailing',     es: 'Vela' },
   'nav.caminos':           { en: 'Caminos',     es: 'Caminos' },
+  'nav.cooking':           { en: 'Cooking',     es: 'Cocina' },
   'nav.map':               { en: 'Map',         es: 'Mapa' },
   'nav.about':             { en: 'About',       es: 'Quién soy' },
 

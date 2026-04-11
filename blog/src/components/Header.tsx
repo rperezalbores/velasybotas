@@ -66,6 +66,7 @@ export default function Header() {
     { href: '/trips', label: t('nav.trips') },
     { href: '/trips?type=sailing', label: t('nav.sailing') },
     { href: '/trips?type=camino', label: t('nav.caminos') },
+    { href: '/trips/cooking-2026', label: t('nav.cooking') },
     { href: '/map', label: t('nav.map') },
     { href: '/about', label: t('nav.about') },
   ]
