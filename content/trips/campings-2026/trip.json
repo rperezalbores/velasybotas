@@ -1,0 +1,21 @@
+{
+  "slug": "campings-2026",
+  "title": "Campings 2026",
+  "titleEs": "Campamentos 2026",
+  "subtitle": "Adventures under the stars — desert camps, mountains, and good food",
+  "subtitleEs": "Aventuras bajo las estrellas — campamentos en el desierto, montañas y buena comida",
+  "summary": "A collection of camping expeditions, outdoor gatherings, and culinary adventures exploring the landscapes around home.",
+  "summaryEs": "Una colección de expediciones de campamento, reuniones al aire libre y aventuras culinarias explorando los paisajes alrededor de casa.",
+  "type": "travel",
+  "dateStart": "2026-04-10",
+  "dateEnd": "2026-04-11",
+  "coverImage": "https://pub-3b2faf4e0ab04a05907f60ff781623b7.r2.dev/trips/campings-2026/photos/IMG_20260411_091456.jpg",
+  "featured": false,
+  "tags": ["camping", "desert", "outdoor", "family", "cooking", "food"],
+  "route": {
+    "type": "LineString",
+    "coordinates": [
+      [56.08, 24.80]
+    ]
+  }
+}

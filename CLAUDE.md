@@ -293,9 +293,11 @@ GitHub (rperezalbores/velasybotas)
 - **Public CDN URL:** `https://pub-3b2faf4e0ab04a05907f60ff781623b7.r2.dev`
 - **S3 endpoint:** `https://a6ae56351c8726423eaef4f41d51819c.r2.cloudflarestorage.com`
 - **Folder structure:** `trips/[trip-slug]/[leg-slug]/photos/filename`
+- **Credentials:** stored in `/Users/ricardoperez/claude/.env` (`R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`)
 - Upload with AWS CLI (S3-compatible):
 ```bash
-AWS_ACCESS_KEY_ID=<key> AWS_SECRET_ACCESS_KEY=<secret> \
+source /Users/ricardoperez/claude/.env
+AWS_ACCESS_KEY_ID=$R2_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY=$R2_SECRET_ACCESS_KEY \
   aws s3 sync content/trips/ s3://velasybotas/trips/ \
   --endpoint-url https://a6ae56351c8726423eaef4f41d51819c.r2.cloudflarestorage.com \
   --exclude "*.mdx" --exclude "*.json"

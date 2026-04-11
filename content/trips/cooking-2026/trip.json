@@ -1,0 +1,21 @@
+{
+  "slug": "cooking-2026",
+  "title": "Cooking 2026",
+  "titleEs": "Cocina 2026",
+  "subtitle": "Recipes, culinary adventures, and the stories behind the meals",
+  "subtitleEs": "Recetas, aventuras culinarias y las historias detrás de las comidas",
+  "summary": "A culinary journal documenting the dishes, techniques, and memorable meals throughout the year.",
+  "summaryEs": "Un diario culinario documentando los platos, técnicas y comidas memorables a lo largo del año.",
+  "type": "travel",
+  "dateStart": "2026-01-01",
+  "dateEnd": "2026-12-31",
+  "coverImage": "https://via.placeholder.com/800x600?text=Cooking+2026",
+  "featured": false,
+  "tags": ["cooking", "food", "recipes", "culinary"],
+  "route": {
+    "type": "LineString",
+    "coordinates": [
+      [55.27, 25.20]
+    ]
+  }
+}
