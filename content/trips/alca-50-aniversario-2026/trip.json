@@ -1,0 +1,21 @@
+{
+  "slug": "alca-50-aniversario-2026",
+  "title": "Colexio Alca — Cincuenta Anos",
+  "titleEs": "Colegio Alca — Cincuenta Años",
+  "subtitle": "Medio século dunha institución compostelá",
+  "subtitleEs": "Medio siglo de una institución compostelana",
+  "summary": "Volta a Santiago de Compostela para o 50 aniversario do Colexio Alca, fundado en 1976 polo meu pai José Luis Pérez e o seu socio Fausto Varela. Misa, cea e unha mirada longa a medio século ensinando.",
+  "summaryEs": "Vuelta a Santiago de Compostela para el 50 aniversario del Colegio Alca, fundado en 1976 por mi padre José Luis Pérez y su socio Fausto Varela. Misa, cena y una mirada larga a medio siglo enseñando.",
+  "type": "travel",
+  "dateStart": "2026-05-22",
+  "dateEnd": "2026-05-23",
+  "coverImage": "",
+  "tags": ["santiago", "galicia", "family", "anniversary", "spain"],
+  "route": {
+    "type": "LineString",
+    "coordinates": [
+      [-8.6420, 42.8745]
+    ]
+  },
+  "featured": false
+}
